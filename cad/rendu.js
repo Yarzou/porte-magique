@@ -22,7 +22,7 @@ const COULEURS = {
   tasseau: '#e6d3b0',
   porte: '#c99b6b',
   sombre: '#5b6169',
-  rouge: '#e0533f',
+  eteint: '#9aa0a8',
   vert: '#36b37e',
   mousse: '#4a4f57',
 }

@@ -83,7 +83,7 @@ scene('apercu', () => ({
   objets: [
     ...decor(),
     { g: pc.fond(), c: 'imprime' },
-    ...facadeComplete(0, 'vert'),
+    ...facadeComplete(0, 'eteint'),
     { g: A.contact(113, 30, 20), c: 'achat' },
     { g: A.contact(140, 30, 25), c: 'achat' },
   ],
@@ -277,7 +277,7 @@ scene('e-fermeture', () => {
       fondSeul(),
       ...interieur(),
       { g: A.joint(), c: 'mousse' },
-      ...facadeComplete(ecart, 'rouge').map((o) => (o.c === 'imprime' ? { ...o, c: 'neuf' } : o)),
+      ...facadeComplete(ecart, 'eteint').map((o) => (o.c === 'imprime' ? { ...o, c: 'neuf' } : o)),
       ...P.plots.map(([x, y]) => ({ g: A.vis(x, y, P.zFacade + ecart + 18, 12), c: 'metal' })),
     ],
     fleches: P.plots.map(([x, y]) => ({ de: [x, y, P.zFacade + ecart + 14], a: [x, y, P.zPlots + 1] })),
@@ -297,7 +297,7 @@ scene('e-porte', () => ({
     { g: pc.boite(128, -70, 20, 612, 230, 25), c: 'porte' },
     ...[-30, 80, 190].map((y) => ({ g: pc.boite(600, y, 25, 616, y + 30, 27), c: 'metal' })),
     { g: pc.fond(), c: 'imprime' },
-    ...facadeComplete(0, 'rouge'),
+    ...facadeComplete(0, 'eteint'),
     { g: A.contact(121, 30, 20), c: 'neuf' },
     { g: A.contact(142, 30, 25), c: 'neuf' },
   ],
@@ -312,14 +312,14 @@ scene('e-reglage', () => ({
     { g: pc.boite(112, -70, 0.01, 134, 230, 20), c: 'tasseau' },
     { g: pc.boite(128, -70, 20, 160, 230, 25), c: 'porte' },
     { g: pc.fond(), c: 'imprime' },
-    ...facadeComplete(0, 'rouge'),
+    ...facadeComplete(0, 'eteint'),
   ],
   etiquettes: [{ t: '1 à 6 mm', p: [160, ay, 25.5], dx: 90, dy: -70 }],
   vue: [1, 0.02, 0.001], largeur: 900, hauteur: 620, marge: 0.04,
   cadre: [100, ay - 55, -20, 160, ay + 55, 90],
 }))
 
-scene('e-ferme', () => ({ objets: [...decor(), { g: pc.fond(), c: 'imprime' }, ...facadeComplete(0, 'rouge', false)], vue: [0.12, 0.08, 1], largeur: 700, hauteur: 560, marge: 0.03 }))
+scene('e-ferme', () => ({ objets: [...decor(), { g: pc.fond(), c: 'imprime' }, ...facadeComplete(0, 'eteint', false)], vue: [0.12, 0.08, 1], largeur: 700, hauteur: 560, marge: 0.03 }))
 scene('e-ouvert', () => ({ objets: [...decor(), { g: pc.fond(), c: 'imprime' }, ...facadeComplete(0, 'vert', true)], vue: [0.12, 0.08, 1], largeur: 700, hauteur: 560, marge: 0.03 }))
 
 scene('e-passerelle', () => {

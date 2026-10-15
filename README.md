@@ -7,8 +7,8 @@ Chaque famille a sa porte, de son côté : le passage n'est ouvert que si les de
 
 | Fermé | Ouvert |
 |---|---|
-| ![Taquet horizontal devant le bord de la porte, voyant rouge](docs/notice/img/e-ferme.png) | ![Taquet levé au-dessus du boîtier, voyant vert](docs/notice/img/e-ouvert.png) |
-| Le taquet passe devant le bord de la porte : on ne peut pas la pousser depuis l'autre côté. Voyant rouge. | Le taquet s'est levé d'un quart de tour : la porte est libre. Voyant vert quand les deux portes sont ouvertes. |
+| ![Taquet horizontal devant le bord de la porte, voyant éteint](docs/notice/img/e-ferme.png) | ![Taquet levé au-dessus du boîtier, voyant vert](docs/notice/img/e-ouvert.png) |
+| Le taquet passe devant le bord de la porte : on ne peut pas la pousser depuis l'autre côté. Voyant éteint. | Le taquet s'est levé d'un quart de tour : la porte est libre. Voyant vert quand les deux portes sont ouvertes. |
 
 ## Principe
 
