@@ -3,6 +3,13 @@
 Verrou connecté, sur batterie, pour la petite porte percée dans la clôture entre deux jardins voisins.
 Chaque famille a sa porte, de son côté : le passage n'est ouvert que si les deux sont déverrouillées.
 
+![Le boîtier vissé sur la clôture, à côté du bord de la porte : son taquet passe devant la porte et la bloque](docs/notice/img/apercu.png)
+
+| Fermé | Ouvert |
+|---|---|
+| ![Taquet horizontal devant le bord de la porte, voyant rouge](docs/notice/img/e-ferme.png) | ![Taquet levé au-dessus du boîtier, voyant vert](docs/notice/img/e-ouvert.png) |
+| Le taquet passe devant le bord de la porte : on ne peut pas la pousser depuis l'autre côté. Voyant rouge. | Le taquet s'est levé d'un quart de tour : la porte est libre. Voyant vert quand les deux portes sont ouvertes. |
+
 ## Principe
 
 - **Sur chaque porte** : un boîtier imprimé vissé sur la clôture, à côté du bord de la porte. Son taquet, entraîné par un servo, pivote devant le bord de la porte pour la bloquer. Dedans : une carte FireBeetle 2 ESP32-C6 en veille profonde, un module MOSFET qui coupe le servo au repos, un contact de porte, un bouton lumineux pour les enfants et une batterie LiPo rechargeable par USB-C.
