@@ -10,6 +10,7 @@ const { geometries, modifiers } = require('@jscad/modeling')
 
 const CHROME = process.env.CHROME || 'C:/Program Files/Google/Chrome/Application/chrome.exe'
 const TMP = fs.mkdtempSync(path.join(os.tmpdir(), 'porte-magique-'))
+process.on('exit', () => fs.rmSync(TMP, { recursive: true, force: true }))
 const THREE_URL = pathToFileURL(path.join(__dirname, 'node_modules', 'three')).href
 
 const COULEURS = {
