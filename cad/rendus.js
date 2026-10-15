@@ -36,7 +36,6 @@ const interieur = () => [
   { g: accouplement(), c: 'imprime' },
   { g: A.carte(), c: 'achat' },
   { g: A.batterie(), c: 'achat' },
-  { g: A.sangle(), c: 'sombre' },
   { g: A.moduleMosfet(), c: 'achat' },
   ...[0, 1, 2].map((i) => ({ g: A.wago(i), c: 'achat' })),
 ]
@@ -176,8 +175,7 @@ scene('e-carte', () => ({
     { g: accouplement(), c: 'imprime' },
     { g: translate([0, 0, 35], A.carte()), c: 'neuf' },
     { g: translate([0, 0, 35], A.batterie()), c: 'neuf' },
-    { g: A.sangle(), c: 'sombre' },
-  ],
+    ],
   fleches: [
     { de: [26, 30, 35 + 10], a: [26, 30, 16] },
     { de: [74, 58, 35 + 12], a: [74, 58, 16] },
@@ -197,8 +195,7 @@ scene('e-mosfet', () => ({
     { g: accouplement(), c: 'imprime' },
     { g: A.carte(), c: 'achat' },
     { g: A.batterie(), c: 'achat' },
-    { g: A.sangle(), c: 'sombre' },
-    { g: translate([0, 0, 30], A.moduleMosfet()), c: 'neuf' },
+      { g: translate([0, 0, 30], A.moduleMosfet()), c: 'neuf' },
     ...[0, 1, 2].map((i) => ({ g: translate([0, 0, 30], A.wago(i)), c: 'neuf' })),
   ],
   fleches: [
@@ -298,19 +295,13 @@ scene('e-porte', () => ({
     { g: A.tasseau(), c: 'tasseau' },
     { g: pc.boite(600, -70, 0.01, 625, 230, 20), c: 'tasseau' },
     { g: pc.boite(128, -70, 20, 612, 230, 25), c: 'porte' },
-    ...[-30, 80, 190].map((y, i) => ({ g: pc.boite(600, y, 25, 616, y + 30, 27), c: i === 1 ? 'neuf' : 'metal' })),
+    ...[-30, 80, 190].map((y) => ({ g: pc.boite(600, y, 25, 616, y + 30, 27), c: 'metal' })),
     { g: pc.fond(), c: 'imprime' },
     ...facadeComplete(0, 'rouge'),
     { g: A.contact(121, 30, 20), c: 'neuf' },
     { g: A.contact(142, 30, 25), c: 'neuf' },
-    { g: pc.boite(120, 85, 20, 127, 105, 30), c: 'neuf' },
-    { g: pc.boite(129, 88, 25, 137, 102, 28), c: 'neuf' },
   ],
-  etiquettes: [
-    { t: 'G', p: [140, 30, 33], dx: 80, dy: 40 },
-    { t: 'R', p: [608, 95, 27], dx: 60, dy: -60 },
-    { t: 'S', p: [133, 95, 28], dx: 80, dy: -50 },
-  ],
+  etiquettes: [{ t: 'G', p: [140, 30, 33], dx: 80, dy: 40 }],
   vue: [0.25, 0.25, 1.5], largeur: 1100, hauteur: 620, marge: 0.05,
 }))
 
@@ -323,7 +314,7 @@ scene('e-reglage', () => ({
     { g: pc.fond(), c: 'imprime' },
     ...facadeComplete(0, 'rouge'),
   ],
-  etiquettes: [{ t: '1 à 3 mm', p: [160, ay, 25.5], dx: 90, dy: -70 }],
+  etiquettes: [{ t: '1 à 6 mm', p: [160, ay, 25.5], dx: 90, dy: -70 }],
   vue: [1, 0.02, 0.001], largeur: 900, hauteur: 620, marge: 0.04,
   cadre: [100, ay - 55, -20, 160, ay + 55, 90],
 }))

@@ -86,14 +86,6 @@ function fond (cote = 'gauche') {
     boite(b.x0, b.y0 + b.L - 1, f - 1, b.x0 + 16, b.y0 + b.L + b.ep + 1, f + b.h + 1),
   ))
 
-  // Fentes et gorge de la sangle velcro (la gorge passe derrière le fond)
-  const g = P.sangle
-  const fenteG = b.x0 - b.ep - 0.3 - g.ep
-  const fenteD = b.x0 + b.l + b.ep + 0.3
-  creux.push(boite(fenteG, g.y0, -1, fenteG + g.ep, g.y0 + g.l, f + 1))
-  creux.push(boite(fenteD, g.y0, -1, fenteD + g.ep, g.y0 + g.l, f + 1))
-  creux.push(boite(fenteG, g.y0, -1, fenteD + g.ep, g.y0 + g.l, g.creux))
-
   // Bac du module MOSFET
   const m = P.mosfet
   plein.push(subtract(

@@ -134,13 +134,17 @@
         <thead><tr><th>d mesuré</th><th>Taquet à imprimer</th></tr></thead>
         <tbody>
           <tr><td>0 à 5 mm</td><td><span class="file">taquet-doigt-60.stl</span></td></tr>
-          <tr><td>5 à 15 mm</td><td><span class="file">taquet-doigt-50.stl</span></td></tr>
-          <tr><td>15 à 25 mm</td><td><span class="file">taquet-doigt-40.stl</span></td></tr>
-          <tr><td>25 à 35 mm</td><td><span class="file">taquet-doigt-30.stl</span></td></tr>
-          <tr><td>35 à 45 mm</td><td><span class="file">taquet-doigt-20.stl</span></td></tr>
+          <tr><td>5 à 10 mm</td><td><span class="file">taquet-doigt-55.stl</span></td></tr>
+          <tr><td>10 à 15 mm</td><td><span class="file">taquet-doigt-50.stl</span></td></tr>
+          <tr><td>15 à 20 mm</td><td><span class="file">taquet-doigt-45.stl</span></td></tr>
+          <tr><td>20 à 25 mm</td><td><span class="file">taquet-doigt-40.stl</span></td></tr>
+          <tr><td>25 à 30 mm</td><td><span class="file">taquet-doigt-35.stl</span></td></tr>
+          <tr><td>30 à 35 mm</td><td><span class="file">taquet-doigt-30.stl</span></td></tr>
+          <tr><td>35 à 40 mm</td><td><span class="file">taquet-doigt-25.stl</span></td></tr>
+          <tr><td>40 à 45 mm</td><td><span class="file">taquet-doigt-20.stl</span></td></tr>
         </tbody>
       </table>
-      <p class="small">Le doigt s'arrête alors 1 à 11 mm devant la porte. Des patins collés au bout réduisent l'écart à 1 à 3 mm (étape 15). Pour une autre valeur, change la liste <code>doigts</code> dans <code>cad/parametres.js</code> puis lance <code>npm run stl</code>.</p>
+      <p class="small">Le doigt s'arrête alors 1 à 6 mm devant la porte. Pour une autre valeur, change la liste <code>doigts</code> dans <code>cad/parametres.js</code> puis lance <code>npm run stl</code>.</p>
     </div>
   </div>
 
@@ -189,15 +193,11 @@
     <div class="item"><img src="notice/img/inv-N.png" alt=""><b>N ×4</b><span>inserts filetés M3</span></div>
     <div class="item"><img src="notice/img/inv-P.png" alt=""><b>P ×4</b><span>vis M3 × 12</span></div>
     <div class="item"><img src="notice/img/inv-Q.png" alt=""><b>Q ×4</b><span>vis à bois 4 × 30</span></div>
-    <div class="item sans-image"><b>R ×1</b><span>charnière à ressort, avec vis et écrous M4</span></div>
-    <div class="item sans-image"><b>S ×1</b><span>loqueteau magnétique</span></div>
-    <div class="item sans-image"><b>T ×1</b><span>sangle velcro 20 mm, environ 25 cm</span></div>
     <div class="item sans-image"><b>U</b><span>joint mousse 6 × 3 mm, environ 50 cm</span></div>
-    <div class="item sans-image"><b>V</b><span>patins en caoutchouc adhésifs</span></div>
     <div class="item sans-image"><b>W</b><span>fils Dupont (mâle-femelle et femelle-femelle)</span></div>
     <div class="item sans-image"><b>X ×1</b><span>rallonge JST-PH 2.0 à 2 broches</span></div>
     <div class="item sans-image"><b>Y</b><span>adhésif double face mousse</span></div>
-    <div class="item sans-image"><b>+</b><span>un sachet de gel de silice</span></div>
+    <div class="item sans-image"><b>+</b><span>facultatif : un sachet de gel de silice, de récupération</span></div>
     <div class="item sans-image"><b>+</b><span>passerelle : une seconde carte B, un câble USB-C et un chargeur</span></div>
   </div>
 </section>
@@ -311,8 +311,7 @@
       <div class="fig"><img src="notice/img/e-carte.png" alt=""></div>
       <ol class="actions">
         <li>Colle la carte <span class="lettre">B</span> sur ses deux appuis avec l'adhésif <span class="lettre">Y</span>, <strong>prise USB-C contre le trou du bas</strong>.</li>
-        <li>Passe la sangle <span class="lettre">T</span> par les deux fentes du fond : elle passe derrière, dans la rainure.</li>
-        <li>Pose la batterie <span class="lettre">C</span> dans son berceau, fil en haut à gauche, et serre la sangle. Ne la branche pas encore.</li>
+        <li>Pose la batterie <span class="lettre">C</span> dans son berceau, fil en haut à gauche : les deux appuis au dos de la façade la tiendront une fois le boîtier fermé. Ne la branche pas encore.</li>
       </ol>
     </div>
   </div>
@@ -565,8 +564,7 @@
       <h3>Fermer le boîtier</h3>
       <div class="fig haute"><img src="notice/img/e-fermeture.png" alt=""></div>
       <ol class="actions">
-        <li>Colle le joint mousse <span class="lettre">U</span> tout autour du rebord, sans le tendre, et mets un sachet de silice au fond.</li>
-        <li>Colle un patin <span class="lettre">V</span> au bout des deux appuis en croix, au dos de la façade : ils tiendront la batterie.</li>
+        <li>Colle le joint mousse <span class="lettre">U</span> tout autour du rebord, sans le tendre. Si tu as un sachet de silice, pose-le au fond.</li>
         <li>Mode « montage » du programme : le servo se met en position fermée. Taquet à l'horizontale, présente la façade : l'écrou entre dans l'accouplement.</li>
         <li>Visse les quatre vis <span class="lettre">P</span> dans les inserts, en croix, jusqu'à ce que la façade touche les plots.</li>
       </ol>
@@ -577,12 +575,11 @@
   <div class="step">
     <div class="num">14</div>
     <div>
-      <h3>Sur la porte</h3>
+      <h3>Le contact de porte</h3>
       <div class="fig"><img src="notice/img/e-porte.png" alt=""></div>
       <ol class="actions">
-        <li><span class="lettre">R</span> : remplace la charnière du milieu par la charnière à ressort, fixée par des vis M4 qui traversent la porte, rondelles et écrous de l'autre côté. Elle referme la porte doucement.</li>
-        <li><span class="lettre">S</span> : le loqueteau magnétique, près du bord libre : il tient la porte fermée quand elle est déverrouillée.</li>
-        <li><span class="lettre">G</span> : le contact sur le cadre, son aimant en face sur la porte, à moins d'1 cm l'un de l'autre quand la porte est fermée (adhésif fourni).</li>
+        <li>Colle le contact <span class="lettre">G</span> sur le cadre et son aimant en face, sur la porte, près du bord libre (adhésif fourni).</li>
+        <li>Porte fermée, ils doivent être à moins d'1 cm l'un de l'autre.</li>
       </ol>
     </div>
   </div>
@@ -595,8 +592,8 @@
       <h3>Régler le doigt</h3>
       <div class="fig"><img src="notice/img/e-reglage.png" alt=""></div>
       <ol class="actions">
-        <li>Porte fermée, taquet fermé : regarde de profil l'écart entre le bout du doigt et la porte. Il doit rester <strong>1 à 3 mm</strong>.</li>
-        <li>Trop d'écart : colle un ou deux patins <span class="lettre">V</span> au bout du doigt.</li>
+        <li>Porte fermée, taquet fermé : regarde de profil l'écart entre le bout du doigt et la porte. Il doit rester <strong>1 à 6 mm</strong>.</li>
+        <li>Trop d'écart : imprime le taquet de la taille au-dessus (doigt plus long).</li>
         <li>Le doigt frotte la porte : imprime le taquet de la taille en dessous (doigt plus court).</li>
       </ol>
     </div>
@@ -611,8 +608,8 @@
         <div class="fig"><img src="notice/img/e-ouvert.png" alt=""><div class="legende"><strong>Ouvert</strong> : taquet levé ; voyant vert quand les deux portes sont ouvertes</div></div>
       </div>
       <ol class="actions" style="margin-top:2mm">
-        <li>Depuis l'autre côté, pousse la porte fermée : elle ne doit pas bouger de plus de 3 mm.</li>
-        <li>Ouvre, passe, laisse aller : la porte se referme seule et le contact la voit fermée.</li>
+        <li>Depuis l'autre côté, pousse la porte fermée : elle ne doit pas bouger de plus de 6 mm.</li>
+        <li>Déverrouillée : ouvre, passe, referme. Le contact doit voir la porte fermée.</li>
       </ol>
     </div>
   </div>
@@ -642,7 +639,7 @@
         <ol class="actions">
           <li>Quand l'appli prévient que la batterie baisse (tous les 3 à 5 mois) : retire le bouchon sous le boîtier, branche un câble USB-C sur un chargeur ou une batterie externe pendant une nuit, remets le bouchon.</li>
           <li>Ne recharge jamais quand il gèle : attends une journée douce, ou rentre la batterie.</li>
-          <li>Une fois par an : change le sachet de silice, vérifie le joint et le serrage de l'écrou du taquet.</li>
+          <li>Une fois par an : vérifie le joint et le serrage de l'écrou du taquet, et change le sachet de silice s'il y en a un.</li>
         </ol>
       </div>
     </div>

@@ -93,19 +93,6 @@ function batterie () {
   return roundedCuboid({ size: [50, 80, 10], center: [b.x0 + b.l / 2, b.y0 + b.L / 2, f + 5.2], roundRadius: 2, segments: 16 })
 }
 
-// Sangle velcro autour de la batterie (passe derrière le fond)
-function sangle () {
-  const g = P.sangle
-  const b = P.berceau
-  const xg = b.x0 - b.ep - 0.3 - g.ep
-  const xd = b.x0 + b.l + b.ep + 0.3 + g.ep
-  return union(
-    boite(xg + 0.4, g.y0 + 1, f + 10.4, xd - 0.4, g.y0 + 21, f + 11.6),
-    boite(xg + 0.4, g.y0 + 1, -0.2 + 0.3, xg + 1.6, g.y0 + 21, f + 11.6),
-    boite(xd - 1.6, g.y0 + 1, -0.2 + 0.3, xd - 0.4, g.y0 + 21, f + 11.6),
-  )
-}
-
 function moduleMosfet () {
   const m = P.mosfet
   const x0 = m.x0 + 0.5
@@ -178,6 +165,6 @@ const porte = (x0 = 128, ouverte = false) => ouverte
   : boite(x0, -70, 20, 330, 230, 25)
 
 module.exports = {
-  servo, palonnier, roulement, rondelle, ecrou, visM8, vis, visBois, insert, carte, batterie, sangle, moduleMosfet,
+  servo, palonnier, roulement, rondelle, ecrou, visM8, vis, visBois, insert, carte, batterie, moduleMosfet,
   wago, bouton, anneauBouton, presseEtoupe, contact, joint, ferASouder, cloture, tasseau, porte,
 }
