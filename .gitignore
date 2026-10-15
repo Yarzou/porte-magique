@@ -8,3 +8,6 @@
 # Secrets (wifi, clés)
 .env*
 secrets.h
+
+# Dépendances
+node_modules/

@@ -1,0 +1,16 @@
+{
+  "name": "porte-magique-cad",
+  "private": true,
+  "description": "Pièces à imprimer de la porte magique (JSCAD)",
+  "scripts": {
+    "stl": "node build.js",
+    "rendus": "node rendus.js"
+  },
+  "dependencies": {
+    "@jscad/modeling": "2.13.0",
+    "@jscad/stl-serializer": "2.1.23"
+  },
+  "devDependencies": {
+    "three": "0.186.1"
+  }
+}
