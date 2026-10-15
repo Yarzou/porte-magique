@@ -11,3 +11,4 @@ secrets.h
 
 # Dépendances
 node_modules/
+!.env.local.example
