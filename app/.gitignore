@@ -33,3 +33,7 @@ liquibase/*.log
 
 # Réglages de l'éditeur JetBrains (WebStorm, IntelliJ)
 .idea/
+
+# Contenu de l’onglet Montage, recopié depuis docs/ et impression/ (scripts/montage.mjs)
+/public/fichiers/
+/lib/montage.generated.json

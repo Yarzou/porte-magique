@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type PointerEvent, type Ref } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { CalendarClock, DoorOpen, Settings, type LucideIcon } from 'lucide-react'
+import { CalendarClock, DoorOpen, Hammer, Settings, type LucideIcon } from 'lucide-react'
 import GlassLens from '@/components/ui/GlassLens'
 import { useLoupe, type Lens } from '@/components/ui/useLoupe'
 import { cn } from '@/lib/utils'
@@ -19,6 +19,7 @@ interface Tab {
 const TABS: Tab[] = [
   { href: '/passage', label: 'Passage', icon: DoorOpen },
   { href: '/horaires', label: 'Horaires', icon: CalendarClock },
+  { href: '/montage', label: 'Montage', icon: Hammer },
   { href: '/reglages', label: 'Réglages', icon: Settings },
 ]
 
@@ -242,7 +243,7 @@ export default function TabBar() {
             }}
             className={cn(
               // Verre léger et peu flouté (components/ui/glass.ts), même arête que le reste du verre
-              'relative grid h-[62px] touch-none select-none grid-cols-3 rounded-full border border-glass-rim p-1 shadow-sheen backdrop-blur-[10px] backdrop-saturate-[1.8] transition-colors duration-200',
+              'relative grid h-[62px] touch-none select-none grid-cols-4 rounded-full border border-glass-rim p-1 shadow-sheen backdrop-blur-[10px] backdrop-saturate-[1.8] transition-colors duration-200',
               lifted ? 'bg-glass-pressed' : 'bg-glass-thin',
             )}
           >
@@ -308,7 +309,7 @@ export default function TabBar() {
               }}
               focus={bar.border + lens.center}
             >
-              <span className="grid h-full grid-cols-3">
+              <span className="grid h-full grid-cols-4">
                 {TABS.map((tab, i) => (
                   <span
                     key={tab.href}

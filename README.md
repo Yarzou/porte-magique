@@ -30,11 +30,14 @@ Chaque famille a sa porte, de son côté : le passage n'est ouvert que si les de
 
 ## L'appli
 
-Même base que Fridge : Next.js 16, Supabase (comptes, base, temps réel), connexion par email ou par empreinte (passkeys), notifications Web Push, design « Givre » façon iOS. Trois onglets :
+Même base que Fridge : Next.js 16, Supabase (comptes, base, temps réel), connexion par email ou par empreinte (passkeys), notifications Web Push, design « Givre » façon iOS. Quatre onglets :
 
 - **Passage** : l'état des deux portes, ouvrir ou fermer la sienne (tout de suite ou pour 30 min, 1 h, 2 h), les demandes des enfants et le journal ;
 - **Horaires** : les créneaux d'ouverture de sa porte, et ceux des voisins en lecture ;
+- **Montage** : la liste d'achat à cocher (coches gardées sur le téléphone), les pièces à imprimer avec leur aperçu 3D à tourner du doigt et le fichier STL, la notice étape par étape et les deux PDF ;
 - **Réglages** : la famille et les invitations, les voisins, les notifications, l'empreinte, la passerelle et le réglage du taquet.
+
+L'onglet Montage n'a pas de contenu à lui : `app/scripts/montage.mjs` relit `docs/materiel.html`, `docs/notice.html`, les dessins et `impression/*.stl` à chaque `npm install`, `npm run dev` et `npm run build`. Modifier la notice ou la liste d'achat suffit donc : l'appli suit au prochain déploiement.
 
 Chaque famille ne commande que sa porte, ce que vérifie la base elle-même (RLS). On entre dans une famille par un lien d'invitation ; le premier lien « voisins » crée la seconde famille et sa porte.
 

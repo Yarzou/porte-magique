@@ -198,3 +198,78 @@ input[type='search']::-webkit-search-cancel-button {
     background: #ffffff;
   }
 }
+
+/* ─── Notice de montage (onglet Montage) ─────────────────────────────────────
+   HTML des étapes repris tel quel de docs/notice.html (scripts/montage.mjs).
+   Les dessins sont faits sur fond blanc : ils le gardent en mode sombre. */
+.notice-etape {
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+.notice-etape p { margin: 0 0 10px; }
+.notice-etape h3 { margin: 18px 0 8px; font-size: 20px; font-weight: 600; }
+.notice-etape .fig,
+.notice-etape svg:not(.ico):not([aria-hidden]) {
+  margin: 4px 0 12px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+}
+.notice-etape .fig img { display: block; width: 100%; height: auto; }
+.notice-etape > svg, .notice-etape svg[viewBox] { max-width: 100%; height: auto; display: block; }
+.notice-etape .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.notice-etape .legende { padding: 4px 8px 10px; font-size: 13px; color: #5b636e; text-align: center; }
+.notice-etape ol, .notice-etape ul { margin: 6px 0 10px; padding-left: 22px; }
+.notice-etape li { margin: 0 0 8px; }
+.notice-etape .attention {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 8px 0 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--warn-soft);
+  font-size: 15px;
+}
+.notice-etape .attention > svg { width: 22px; height: 22px; flex-shrink: 0; margin: 1px 0 0; background: none; border-radius: 0; }
+.notice-etape .astuce { margin: 8px 0 12px; padding: 12px 14px; border-radius: 14px; background: var(--accent-soft); font-size: 15px; }
+.notice-etape .lettre {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 20px;
+  padding: 0 5px;
+  border: 1.5px solid currentColor;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 800;
+  vertical-align: 1px;
+}
+.notice-etape .file, .notice-etape code {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 14px;
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: var(--fill-soft);
+}
+.notice-etape .small { font-size: 13px; color: var(--ink-muted); }
+.notice-etape strong { font-weight: 600; }
+.notice-etape a { color: var(--accent); }
+/* Les tableaux (câblage, choix du taquet) défilent seuls s'ils sont trop larges */
+.notice-etape table {
+  display: block;
+  overflow-x: auto;
+  width: 100%;
+  margin: 8px 0 12px;
+  border-collapse: collapse;
+  font-size: 14px;
+  background: var(--card);
+  border-radius: 14px;
+}
+.notice-etape th, .notice-etape td { padding: 6px 10px; border-bottom: 1px solid var(--separator); text-align: left; white-space: nowrap; }
+.notice-etape th { color: var(--ink-muted); font-weight: 600; }
+/* Mises en page en colonnes de la notice imprimée : une seule colonne sur le téléphone */
+.notice-etape [style*='grid-template-columns'] { display: block !important; }
+.notice-etape .cablage svg { width: 100%; }

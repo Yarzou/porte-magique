@@ -57,6 +57,8 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|manifest.webmanifest|sw.js|icon|apple-icon|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)',
+    // fichiers/ : notice, liste d'achat et pièces à imprimer (scripts/montage.mjs), sans donnée
+    // personnelle. Ouverts dans un nouvel onglet, qui sur iPhone n'a pas la session de l'appli.
+    '/((?!_next/static|_next/image|favicon.ico|manifest.webmanifest|sw.js|icon|apple-icon|fichiers/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)',
   ],
 }

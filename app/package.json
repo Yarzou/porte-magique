@@ -3,9 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "montage": "node scripts/montage.mjs",
+    "predev": "node scripts/montage.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/montage.mjs",
     "build": "next build",
     "start": "next start",
+    "postinstall": "node scripts/montage.mjs",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit",
@@ -27,6 +31,7 @@
     "react": "^19",
     "react-dom": "^19",
     "tailwind-merge": "^2.3.0",
+    "three": "^0.186.1",
     "web-push": "^3.6.7"
   },
   "devDependencies": {
@@ -34,6 +39,7 @@
     "@types/nodemailer": "^8.0.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.186.0",
     "@types/web-push": "^3.6.4",
     "autoprefixer": "^10",
     "eslint": "^9",
