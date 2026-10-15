@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Porte magique — matériel et liste d'achat</title>
+<style>
+  @page { size: A4; margin: 14mm 14mm 15mm; }
+  :root {
+    --ink: #1f2328; --muted: #5b636e; --line: #d9dde3; --soft: #f4f6f8;
+    --accent: #2c7a57; --accent-soft: #e7f3ed; --warn: #a24d17; --warn-soft: #fcf0e7;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; background: #fff; color: var(--ink); font: 10pt/1.45 "Segoe UI", system-ui, -apple-system, Roboto, sans-serif; }
+  h1 { font-size: 23pt; line-height: 1.1; margin: 0 0 2mm; letter-spacing: -.01em; }
+  h2 { font-size: 13.5pt; color: var(--accent); margin: 7mm 0 2.5mm; padding-bottom: 1.4mm; border-bottom: 1.5px solid var(--accent); break-after: avoid; }
+  h3 { font-size: 10.5pt; margin: 4mm 0 1.5mm; break-after: avoid; }
+  p { margin: 0 0 2mm; }
+  ul, ol { margin: 0 0 2mm; padding-left: 5mm; }
+  li { margin: 0 0 1mm; }
+  a { color: var(--accent); font-weight: 600; text-decoration: none; }
+  .lede { font-size: 11pt; color: var(--muted); margin-bottom: 1.5mm; }
+  .meta { font-size: 8.5pt; color: var(--muted); margin-bottom: 4mm; }
+  .panel { background: var(--accent-soft); border-radius: 2mm; padding: 3mm 4mm; margin: 2mm 0 3mm; break-inside: avoid; }
+  .panel h3 { margin-top: 0; color: var(--accent); }
+  .panel ul { margin-bottom: 0; }
+  .warn { background: var(--warn-soft); border-left: 3px solid var(--warn); padding: 2.5mm 3.5mm; margin: 2mm 0 3mm; break-inside: avoid; }
+  .warn strong { color: var(--warn); }
+  table { width: 100%; border-collapse: collapse; margin: 1mm 0 3mm; font-size: 8.7pt; }
+  th, td { text-align: left; vertical-align: top; padding: 1.5mm 1.8mm; border-bottom: 1px solid var(--line); }
+  th { background: var(--soft); color: var(--muted); font-size: 8.2pt; font-weight: 600; }
+  tr { break-inside: avoid; }
+  thead { display: table-header-group; }
+  tr.group td { background: var(--accent-soft); color: var(--accent); font-weight: 700; font-size: 9pt; padding-top: 2mm; }
+  td.chk { width: 5mm; }
+  .box { display: inline-block; width: 3.3mm; height: 3.3mm; border: 1.2px solid var(--muted); border-radius: .7mm; margin-top: .6mm; }
+  td.qty, td.price { white-space: nowrap; }
+  td.price { text-align: right; }
+  .note { color: var(--muted); }
+  .small { font-size: 8.5pt; color: var(--muted); }
+  figure { margin: 2mm 0 3mm; break-inside: avoid; }
+  figure svg { width: 100%; height: auto; display: block; }
+  figcaption { font-size: 8.5pt; color: var(--muted); margin-top: 1mm; }
+  .total td { font-weight: 700; background: var(--soft); }
+  .break { break-before: page; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+</style>
+</head>
+<body>
+
+<h1>Porte magique</h1>
+<p class="lede">Matériel et liste d'achat pour motoriser les deux petites portes de la clôture</p>
+<p class="meta">Version du 15 octobre 2026 · prix indicatifs, à vérifier au moment de commander</p>
+
+<div class="panel">
+  <h3>Ce qui est décidé</h3>
+  <ul>
+    <li><strong>Chaque famille équipe sa porte</strong>, de son côté. Chaque porte s'ouvre vers le jardin de sa famille : le passage n'est libre que si les deux sont déverrouillées.</li>
+    <li><strong>Le verrou est un taquet tournant motorisé</strong>, vissé sur la clôture, du côté opposé aux charnières. Il pivote devant le bord de la porte : rien à aligner, et rien sur la porte à part un aimant.</li>
+    <li><strong>Tout fonctionne sur batterie, sans câble.</strong> Comme une serrure Nuki, rien ne consomme en continu : le servo n'est alimenté que pendant qu'il tourne, et la radio dort presque tout le temps.</li>
+    <li><strong>Chaque maison a sa passerelle</strong>, branchée sur une prise USB et reliée à son propre wifi. La porte lui parle en ESP-NOW, à 5 ou 6 m.</li>
+  </ul>
+</div>
+
+<h2>Le principe</h2>
+<figure>
+<svg viewBox="0 0 700 165" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, system-ui, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5b636e"/></marker>
+  </defs>
+  <rect x="6" y="14" width="236" height="140" rx="10" fill="#e7f3ed" stroke="#2c7a57" stroke-width="1.5"/>
+  <text x="22" y="40" font-size="14" font-weight="700" fill="#2c7a57">Sur la porte (batterie)</text>
+  <g font-size="12" fill="#1f2328">
+    <text x="22" y="64">• carte ESP32-C6 en veille profonde</text>
+    <text x="22" y="84">• servo et taquet tournant</text>
+    <text x="22" y="104">• contact de porte</text>
+    <text x="22" y="124">• bouton lumineux pour les enfants</text>
+    <text x="22" y="144">• batterie LiPo de 5 000 mAh</text>
+  </g>
+  <line x1="248" y1="84" x2="300" y2="84" stroke="#5b636e" stroke-width="2" marker-start="url(#a)" marker-end="url(#a)"/>
+  <text x="274" y="74" font-size="11" text-anchor="middle" fill="#5b636e">ESP-NOW</text>
+  <text x="274" y="102" font-size="10" text-anchor="middle" fill="#5b636e">≈ toutes</text>
+  <text x="274" y="114" font-size="10" text-anchor="middle" fill="#5b636e">les 10 s</text>
+  <rect x="306" y="14" width="210" height="140" rx="10" fill="#f4f6f8" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="322" y="40" font-size="14" font-weight="700" fill="#1f2328">Dans la maison</text>
+  <g font-size="12" fill="#1f2328">
+    <text x="322" y="64">• ESP32-C6 « passerelle »</text>
+    <text x="322" y="84">• sur une prise USB</text>
+    <text x="322" y="104">• reliée au wifi de la maison</text>
+    <text x="322" y="124">• recharge la batterie</text>
+    <text x="334" y="140">de rechange</text>
+  </g>
+  <line x1="522" y1="84" x2="566" y2="84" stroke="#5b636e" stroke-width="2" marker-start="url(#a)" marker-end="url(#a)"/>
+  <text x="544" y="74" font-size="11" text-anchor="middle" fill="#5b636e">internet</text>
+  <rect x="572" y="14" width="122" height="140" rx="10" fill="#fff" stroke="#8b949e" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="586" y="40" font-size="14" font-weight="700" fill="#1f2328">Appli</text>
+  <g font-size="12" fill="#1f2328">
+    <text x="586" y="64">(étape suivante)</text>
+    <text x="586" y="88">• les deux portes</text>
+    <text x="586" y="108">• double accord</text>
+    <text x="586" y="128">• notifications</text>
+  </g>
+</svg>
+<figcaption>La porte se réveille environ toutes les 10 secondes, demande à la passerelle « ouvert ou fermé ? », agit si besoin, puis se rendort. Un ordre donné depuis l'appli met donc jusqu'à 10 s à arriver. Le bouton et le contact de porte la réveillent instantanément.</figcaption>
+</figure>
+
+<figure>
+<svg viewBox="0 0 700 255" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, system-ui, sans-serif">
+  <g id="fence">
+    <rect x="0" y="10" width="330" height="200" fill="#d9c09b"/>
+    <g stroke="#c2a277" stroke-width="2">
+      <line x1="0" y1="35" x2="330" y2="35"/><line x1="0" y1="60" x2="330" y2="60"/><line x1="0" y1="85" x2="330" y2="85"/>
+      <line x1="0" y1="110" x2="330" y2="110"/><line x1="0" y1="135" x2="330" y2="135"/><line x1="0" y1="160" x2="330" y2="160"/>
+      <line x1="0" y1="185" x2="330" y2="185"/>
+    </g>
+  </g>
+  <!-- Verrouillé -->
+  <rect x="150" y="30" width="170" height="170" fill="#ecd5ad"/>
+  <rect x="160" y="40" width="150" height="150" fill="#b9773d" stroke="#8a5427"/>
+  <g fill="#7b818a"><rect x="305" y="58" width="7" height="16"/><rect x="305" y="107" width="7" height="16"/><rect x="305" y="156" width="7" height="16"/></g>
+  <rect x="40" y="70" width="98" height="98" rx="7" fill="#eef1f4" stroke="#8b949e" stroke-width="1.5"/>
+  <circle cx="72" cy="140" r="10" fill="#3a3f46" stroke="#d1453b" stroke-width="4"/>
+  <rect x="118" y="93" width="74" height="15" rx="5" fill="#4a5260"/>
+  <rect x="180" y="93" width="12" height="15" rx="3" fill="#1f2328"/>
+  <circle cx="126" cy="100" r="6" fill="#c9ced6"/>
+  <text x="165" y="232" font-size="14" font-weight="700" text-anchor="middle" fill="#1f2328">Verrouillé</text>
+  <text x="165" y="249" font-size="11.5" text-anchor="middle" fill="#5b636e">le taquet passe devant le bord de la porte</text>
+
+  <!-- Ouvert -->
+  <g transform="translate(370 0)">
+    <use href="#fence"/>
+    <rect x="150" y="30" width="170" height="170" fill="#ecd5ad"/>
+    <rect x="160" y="40" width="150" height="150" fill="#b9773d" stroke="#8a5427"/>
+    <g fill="#7b818a"><rect x="305" y="58" width="7" height="16"/><rect x="305" y="107" width="7" height="16"/><rect x="305" y="156" width="7" height="16"/></g>
+    <rect x="40" y="70" width="98" height="98" rx="7" fill="#eef1f4" stroke="#8b949e" stroke-width="1.5"/>
+    <circle cx="72" cy="140" r="10" fill="#3a3f46" stroke="#2f9e67" stroke-width="4"/>
+    <rect x="119" y="93" width="15" height="74" rx="5" fill="#4a5260"/>
+    <rect x="119" y="155" width="15" height="12" rx="3" fill="#1f2328"/>
+    <circle cx="126" cy="100" r="6" fill="#c9ced6"/>
+    <text x="165" y="232" font-size="14" font-weight="700" text-anchor="middle" fill="#1f2328">Déverrouillé</text>
+    <text x="165" y="249" font-size="11.5" text-anchor="middle" fill="#5b636e">il a pivoté d'un quart de tour, la porte est libre</text>
+  </g>
+</svg>
+<figcaption>Vue depuis son propre jardin. Le boîtier (gris) porte le bouton à anneau lumineux : rouge = fermé, vert = passage ouvert des deux côtés. Le taquet tourne sur un roulement porté par une platine vissée dans la clôture : quand un enfant pousse la porte de l'autre côté, l'effort passe par la platine, pas par le servo.</figcaption>
+</figure>
+
+<h2 class="break">Liste d'achat</h2>
+<p>Quantités pour <strong>les deux portes et les deux passerelles</strong>. Chaque lien ouvre une recherche Amazon (ou la page du fabricant pour le régulateur Pololu) : choisis une offre qui respecte la colonne « À vérifier ».</p>
+
+<table>
+  <thead>
+    <tr><th></th><th>Article</th><th>Qté</th><th>Prix indicatif</th><th>À vérifier</th><th>Lien</th></tr>
+  </thead>
+  <tbody>
+    <tr class="group"><td colspan="6">Électronique</td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Carte <strong>Seeed Studio XIAO ESP32&#8209;C6</strong></td><td class="qty">4</td><td class="price">8–10 € pièce</td><td>Bien « C6 » (ni C3, ni S3). 2 pour les portes, 2 pour les passerelles.</td><td><a href="https://www.amazon.fr/s?k=Seeed+Studio+XIAO+ESP32C6">Amazon</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Batterie <strong>LiPo 3,7 V, 5 000 mAh</strong>, avec protection et connecteur JST&#8209;PH&nbsp;2.0</td><td class="qty">4</td><td class="price">12–15 € pièce</td><td>Protection intégrée (PCM). Taille d'environ 80 × 50 × 10 mm. Une en place et une en charge par porte.</td><td><a href="https://www.amazon.fr/s?k=batterie+lipo+3.7V+5000mAh+JST+PH+2.0+protection">Amazon</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Servomoteur <strong>MG90S</strong> à pignons métal</td><td class="qty">1 lot de 2 à 4</td><td class="price">10–15 € le lot</td><td>MG90S, pas SG90, dont les pignons sont en plastique. Un de rechange.</td><td><a href="https://www.amazon.fr/s?k=servo+MG90S+metal">Amazon</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Régulateur 5 V <strong>Pololu U1V11F5</strong></td><td class="qty">2 (+1)</td><td class="price">≈ 6 € pièce</td><td>Choisi parce qu'il coupe vraiment le servo quand il est éteint. Chez un revendeur Pololu en Europe.</td><td><a href="https://www.pololu.com/product/2562">Pololu</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Bouton poussoir métal <strong>16 mm, étanche, anneau LED RGB</strong></td><td class="qty">2</td><td class="price">5–8 € pièce</td><td>Bouton momentané (sans accrochage). LED en <strong>3–6 V</strong> : la version 12 V ne s'allume pas avec la carte.</td><td><a href="https://www.amazon.fr/s?k=bouton+poussoir+16mm+metal+LED+RGB+etanche+3V+momentane">Amazon</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Contact magnétique de porte, filaire, <strong>NO/NC</strong></td><td class="qty">1 lot</td><td class="price">≈ 8 € le lot</td><td>Trois fils (commun, NO, NC) : on peut le câbler pour qu'il ne consomme rien porte fermée.</td><td><a href="https://www.amazon.fr/s?k=contact+magnetique+filaire+NO+NC">Amazon</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Boîtier étanche <strong>IP65</strong>, environ 100&nbsp;×&nbsp;100&nbsp;×&nbsp;50&nbsp;mm</td><td class="qty">2</td><td class="price">6–9 € pièce</td><td>De couleur claire (il chauffe moins au soleil), couvercle vissé, assez de place pour la batterie.</td><td><a href="https://www.amazon.fr/s?k=boite+derivation+etanche+IP65+100x100x50">Amazon</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Presse-étoupes M12 IP68</td><td class="qty">1 lot</td><td class="price">≈ 6 €</td><td>Pour faire sortir le fil du contact de porte.</td><td><a href="https://www.amazon.fr/s?k=presse+etoupe+M12+IP68">Amazon</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Câbles JST-PH 2.0, 2 broches, mâles et femelles</td><td class="qty">1 lot</td><td class="price">≈ 6 €</td><td>Pour brancher la batterie sur la porte et sur la passerelle, qui la recharge.</td><td><a href="https://www.amazon.fr/s?k=cable+JST+PH+2.0+2+broches+male+femelle">Amazon</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Assortiment de résistances</td><td class="qty">1</td><td class="price">≈ 8 €</td><td>Avec des 1 MΩ (mesure de la batterie) et des 100 à 220 Ω (LED).</td><td><a href="https://www.amazon.fr/s?k=assortiment+resistances+1%2F4W">Amazon</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Assortiment de condensateurs</td><td class="qty">1</td><td class="price">≈ 10 €</td><td>Avec un 470 µF 10 V (au pied du servo) et des 100 nF.</td><td><a href="https://www.amazon.fr/s?k=assortiment+condensateurs+electrolytiques+ceramiques">Amazon</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Plaques à pastilles, petit format</td><td class="qty">1 lot</td><td class="price">≈ 6 €</td><td>Pour souder le régulateur, les résistances et les connecteurs.</td><td><a href="https://www.amazon.fr/s?k=plaque+a+pastilles+prototypage+PCB">Amazon</a></td></tr>
+
+    <tr class="group"><td colspan="6">Mécanique et fixation</td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Roulements <strong>608 2RS</strong> (étanches)</td><td class="qty">1 lot</td><td class="price">≈ 8 € les 10</td><td>« 2RS » = joints des deux côtés, pour l'extérieur.</td><td><a href="https://www.amazon.fr/s?k=roulement+608+2RS">Amazon</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Boulons <strong>M8 × 40 inox</strong>, écrous Nylstop et rondelles</td><td class="qty">4</td><td class="price">≈ 6 €</td><td>L'axe du taquet.</td><td><a href="https://www.amazon.fr/s?k=boulon+M8x40+inox+ecrou+nylstop">Amazon</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td><strong>Charnière à ressort</strong>, environ 50&nbsp;mm, inox</td><td class="qty">2</td><td class="price">5–8 € pièce</td><td>Ressort doux : elle remplace une des trois charnières pour que la porte se referme seule.</td><td><a href="https://www.amazon.fr/s?k=charniere+a+ressort+50mm+inox">Amazon</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td><strong>Loqueteau magnétique</strong></td><td class="qty">2</td><td class="price">≈ 5 € le lot</td><td>Tient la porte fermée quand elle est déverrouillée (vent).</td><td><a href="https://www.amazon.fr/s?k=loqueteau+magnetique">Amazon</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Assortiment de joints toriques</td><td class="qty">1</td><td class="price">≈ 8 €</td><td>Étanchéité de l'axe qui sort du boîtier.</td><td><a href="https://www.amazon.fr/s?k=assortiment+joints+toriques">Amazon</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Inserts filetés M3 à poser à chaud</td><td class="qty">1 lot</td><td class="price">≈ 8 €</td><td>Pour visser dans les pièces imprimées. Se posent au fer à souder.</td><td><a href="https://www.amazon.fr/s?k=inserts+filetes+M3+impression+3D">Amazon</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Assortiment de vis M3 inox</td><td class="qty">1</td><td class="price">≈ 10 €</td><td></td><td><a href="https://www.amazon.fr/s?k=assortiment+vis+M3+inox">Amazon</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Vis M4 inox, écrous et rondelles</td><td class="qty">1 lot</td><td class="price">≈ 8 €</td><td>À faire traverser la porte : le contreplaqué de 5 mm ne retient pas une vis à bois.</td><td><a href="https://www.amazon.fr/s?k=vis+M4+inox+ecrous+rondelles">Amazon</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Patins en caoutchouc adhésifs</td><td class="qty">1 lot</td><td class="price">≈ 5 €</td><td>Au bout du taquet, pour qu'il ne claque pas au vent.</td><td><a href="https://www.amazon.fr/s?k=patins+caoutchouc+adhesifs">Amazon</a></td></tr>
+
+    <tr class="group"><td colspan="6">Impression 3D</td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Filament <strong>PETG</strong> 1,75 mm, blanc ou gris clair, 1 kg</td><td class="qty">1</td><td class="price">≈ 20 €</td><td><strong>Pas de PLA dehors</strong> : il se déforme au soleil. De l'ASA convient aussi, si l'imprimante le gère.</td><td><a href="https://www.amazon.fr/s?k=filament+PETG+1.75+blanc">Amazon</a></td></tr>
+
+    <tr class="group"><td colspan="6">Consommables et outillage</td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Fil silicone 26 AWG (plusieurs couleurs)</td><td class="qty">1</td><td class="price">≈ 10 €</td><td>Souple, il supporte le froid.</td><td><a href="https://www.amazon.fr/s?k=fil+silicone+26+AWG">Amazon</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Gaine thermorétractable (assortiment)</td><td class="qty">1</td><td class="price">≈ 7 €</td><td></td><td><a href="https://www.amazon.fr/s?k=gaine+thermoretractable+assortiment">Amazon</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Sachets de gel de silice</td><td class="qty">1 lot</td><td class="price">≈ 6 €</td><td>Un par boîtier, contre la condensation.</td><td><a href="https://www.amazon.fr/s?k=sachets+gel+de+silice">Amazon</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Multimètre avec un calibre en <strong>µA</strong></td><td class="qty">1</td><td class="price">≈ 25 €</td><td>Seulement si tu n'en as pas : il sert à vérifier la consommation en veille.</td><td><a href="https://www.amazon.fr/s?k=multimetre+numerique+microampere">Amazon</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td>Câble USB-C et chargeur USB</td><td class="qty">2</td><td class="price">—</td><td>Pour les passerelles. Ceux de la maison suffisent.</td><td></td></tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr class="total"><td>Par porte : pièces posées, passerelle et batterie de rechange comprises</td><td class="price">≈ 90 €</td></tr>
+    <tr class="total"><td>Commande complète pour les deux portes, lots et consommables compris (sans le multimètre)</td><td class="price">≈ 270 €</td></tr>
+  </tbody>
+</table>
+<p class="small">Une bonne partie des lots (résistances, vis, roulements, filament) restera pour d'autres projets.</p>
+
+<h2 class="break">Ce que contient chaque boîtier</h2>
+<table>
+  <thead><tr><th>Élément</th><th>Branché sur</th><th>Rôle</th></tr></thead>
+  <tbody>
+    <tr><td>Batterie LiPo</td><td>Pastilles BAT+ et BAT− sous la carte, par un connecteur JST-PH</td><td>Alimente tout. On l'échange contre la batterie chargée.</td></tr>
+    <tr><td>Régulateur U1V11F5</td><td>Entrée sur la batterie ; broche SHDN sur une sortie de la carte</td><td>Produit le 5 V du servo, seulement pendant qu'il tourne.</td></tr>
+    <tr><td>Servo MG90S</td><td>+5 V du régulateur (avec le 470 µF) ; signal sur une sortie de la carte</td><td>Fait pivoter le taquet d'un quart de tour.</td></tr>
+    <tr><td>Bouton</td><td>Une broche capable de réveiller la carte</td><td>« Je voudrais passer » : réveille la carte et prévient les parents.</td></tr>
+    <tr><td>Anneau LED (rouge et vert)</td><td>Deux sorties, par des résistances</td><td>Vert = passage ouvert des deux côtés ; rouge = fermé.</td></tr>
+    <tr><td>Contact de porte</td><td>Une broche capable de réveiller la carte</td><td>La carte ne verrouille que si la porte est fermée.</td></tr>
+    <tr><td>Pont de deux résistances de 1&nbsp;MΩ et 100&nbsp;nF</td><td>Une entrée analogique</td><td>Mesure la batterie ; l'appli prévient quand elle baisse.</td></tr>
+  </tbody>
+</table>
+<p class="small">Le choix des broches sera fixé avec le programme, d'après le brochage officiel de la XIAO ESP32-C6.</p>
+
+<h3>La passerelle</h3>
+<p>Une XIAO ESP32-C6 alimentée en USB, dans la maison, près d'une fenêtre côté jardin, dans un petit boîtier imprimé (le PLA convient à l'intérieur). Un connecteur JST-PH soudé sur ses pastilles batterie permet d'y <strong>recharger la batterie de rechange</strong> : comptez environ deux jours (la carte charge à 100 mA), ce qui ne gêne pas puisqu'on a toujours une batterie d'avance.</p>
+
+<h2>Les pièces à imprimer</h2>
+<div class="cols">
+  <ol>
+    <li><strong>Platine du taquet</strong>, vissée dans la clôture, avec le logement du roulement 608.</li>
+    <li><strong>Taquet</strong> (bras de 8 à 10 cm), avec un patin en caoutchouc au bout.</li>
+    <li><strong>Accouplement</strong> entre l'axe du servo et celui du taquet.</li>
+  </ol>
+  <ol start="4">
+    <li><strong>Support intérieur</strong> du boîtier : carte, régulateur, batterie et servo.</li>
+    <li><strong>Petit auvent</strong> au-dessus du taquet, contre la pluie.</li>
+    <li><strong>Boîtier de la passerelle</strong>.</li>
+  </ol>
+</div>
+<p class="small">Les modèles, en OpenSCAD avec des cotes réglables, seront ajoutés au dépôt. Il faudra relever quelques mesures sur place : largeur du cadre à gauche de la porte, recouvrement voulu sur le bord de la porte, épaisseur de la clôture.</p>
+
+<h2>Autonomie attendue</h2>
+<table>
+  <thead><tr><th>Rythme de réveil</th><th>Durée avec une batterie de 5 000 mAh</th></tr></thead>
+  <tbody>
+    <tr><td>Toutes les 10 s, jour et nuit</td><td>environ 3 mois</td></tr>
+    <tr><td>Toutes les 10 s le jour, toutes les 5 min la nuit</td><td>environ 5 mois</td></tr>
+  </tbody>
+</table>
+<p class="small">Ordres de grandeur, à confirmer en mesurant le prototype. C'est la radio qui consomme presque tout : quelques dizaines de µA de fuite ne coûtent que quelques jours d'autonomie.</p>
+
+<h2 class="break">Points de vigilance</h2>
+<div class="warn"><strong>Une fuite de quelques milliampères vide la batterie en quelques semaines.</strong> Les coupables habituels : un servo resté alimenté (5 à 10 mA au repos), un régulateur qui laisse passer la tension quand il est éteint (c'est le cas de la plupart des élévateurs, pas du U1V11F5), une LED oubliée allumée, ou une LED « adressable » de type WS2812, qui consomme même éteinte.</div>
+<ul>
+  <li><strong>Polarité des batteries.</strong> Les fils rouge et noir des connecteurs JST ne suivent aucune norme d'un vendeur à l'autre. Vérifie au multimètre avant de brancher ou de souder : une inversion abîme la carte et la batterie.</li>
+  <li><strong>Canal radio.</strong> La passerelle, connectée au wifi, impose le canal de la box. La porte doit émettre sur ce même canal, et le retrouver si la box en change. Les échanges ESP-NOW seront chiffrés.</li>
+  <li><strong>Ne verrouiller que porte fermée.</strong> Le contact de porte le garantit : sinon le taquet attend que la porte se referme.</li>
+  <li><strong>Le contreplaqué de 5 mm ne retient pas une vis.</strong> La charnière à ressort et l'aimant se fixent avec des vis M4 traversantes et des rondelles. Le boîtier et la platine se vissent dans la clôture, pas dans la porte.</li>
+  <li><strong>Humidité</strong> (il y a de la mousse sur la clôture) : boîtier IP65, petit trou d'évacuation en bas, sachet de silice, presse-étoupes orientés vers le bas, joint torique autour de l'axe.</li>
+  <li><strong>Chaleur</strong> : boîtier et pièces de couleur claire, à l'ombre si possible. Les batteries se rechargent à l'intérieur, jamais par temps de gel.</li>
+  <li><strong>L'effort va dans la platine</strong> : le taquet tourne sur son roulement, et le servo ne fait que le faire pivoter. Un enfant qui pousse la porte ne force pas sur les engrenages.</li>
+  <li><strong>En cas de panne</strong>, le taquet se tourne à la main depuis son propre jardin. Le petit crochet actuel peut rester en secours.</li>
+</ul>
+
+<h2>Étapes</h2>
+<ol>
+  <li><strong>Prototype sur table</strong> : carte, servo, bouton, contact et passerelle ; mesure de la consommation en veille.</li>
+  <li><strong>Pièces imprimées</strong> essayées sur la vraie porte.</li>
+  <li><strong>Première porte en service</strong>, commandée depuis une petite page web servie par la passerelle, sur le réseau de la maison.</li>
+  <li><strong>L'appli</strong> : les deux portes, le double accord, les demandes des enfants, les horaires (appliqués par la passerelle, donc même sans internet) et les notifications.</li>
+  <li><strong>La porte du voisin</strong> : même montage en miroir, avec sa passerelle chez lui.</li>
+</ol>
+
+</body>
+</html>

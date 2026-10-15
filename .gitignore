@@ -1,0 +1,10 @@
+# PlatformIO
+.pio/
+.vscode/
+
+# Impression 3D
+*.gcode
+
+# Secrets (wifi, clés)
+.env*
+secrets.h
