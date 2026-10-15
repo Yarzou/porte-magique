@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Porte magique — notice de montage</title>
+<style>
+  @page { size: A4; margin: 12mm 13mm 13mm; }
+  :root {
+    --ink: #1f2328; --muted: #5b636e; --line: #d9dde3; --soft: #f4f6f8;
+    --accent: #2c7a57; --accent-soft: #e7f3ed; --jaune: #f5c15a; --jaune-soft: #fdf3dc;
+    --warn: #a24d17; --warn-soft: #fcf0e7;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; background: #fff; color: var(--ink); font: 10pt/1.45 "Segoe UI", system-ui, -apple-system, Roboto, sans-serif; }
+  h1 { font-size: 30pt; line-height: 1.05; margin: 0 0 2mm; letter-spacing: -.02em; }
+  h2 { font-size: 15pt; margin: 0 0 3mm; padding-bottom: 1.5mm; border-bottom: 2px solid var(--ink); break-after: avoid; }
+  h3 { font-size: 12pt; margin: 0 0 1.5mm; }
+  p { margin: 0 0 2mm; }
+  ul, ol { margin: 0 0 2mm; padding-left: 5mm; }
+  li { margin: 0 0 1mm; }
+  code, .file { font-family: Consolas, "Cascadia Mono", monospace; font-size: 8.8pt; background: var(--soft); padding: .2mm 1.2mm; border-radius: 1mm; }
+  img { display: block; max-width: 100%; }
+  .page { break-before: page; }
+  .lede { font-size: 12pt; color: var(--muted); margin-bottom: 4mm; }
+  .small { font-size: 8.5pt; color: var(--muted); }
+
+  /* Étapes, façon notice de meuble */
+  .step { display: grid; grid-template-columns: 15mm 1fr; column-gap: 4mm; margin: 0 0 5mm; break-inside: avoid; }
+  .cablage svg { width: 90%; margin: 0 auto; }
+  .cablage table { font-size: 8.4pt; }
+  .cablage th, .cablage td { padding: .9mm 1.6mm; }
+  .num { width: 13mm; height: 13mm; border-radius: 50%; background: var(--ink); color: #fff; font: 800 17pt/13mm "Segoe UI", system-ui, sans-serif; text-align: center; }
+  .step h3 { margin-top: 2.5mm; }
+  .step .fig { margin: 2mm 0 2mm; border: 1px solid var(--line); border-radius: 2mm; overflow: hidden; }
+  .step .fig img { width: 100%; max-height: 70mm; object-fit: contain; background: #fff; }
+  .step .fig.haute img { max-height: 92mm; }
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+  .duo .fig { margin: 0; }
+  .legende { font-size: 8.5pt; color: var(--muted); text-align: center; padding: 1mm 0 1.5mm; }
+  .actions { margin: 0; padding-left: 5mm; }
+  .attention { display: grid; grid-template-columns: 8mm 1fr; gap: 2mm; align-items: start; background: var(--warn-soft); border-radius: 2mm; padding: 2mm 3mm; margin-top: 2mm; font-size: 9pt; }
+  .attention .ico { width: 7mm; height: 7mm; }
+  .astuce { background: var(--accent-soft); border-radius: 2mm; padding: 2mm 3mm; margin-top: 2mm; font-size: 9pt; }
+  .lettre { display: inline-block; min-width: 5.4mm; padding: 0 1.3mm; border: 1.4px solid var(--ink); border-radius: 3mm; font-weight: 800; font-size: 8.6pt; line-height: 4.6mm; text-align: center; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 9pt; margin: 1mm 0 3mm; }
+  th, td { text-align: left; vertical-align: top; padding: 1.4mm 1.8mm; border-bottom: 1px solid var(--line); }
+  th { background: var(--soft); color: var(--muted); font-size: 8.4pt; font-weight: 600; }
+  tr { break-inside: avoid; }
+
+  .couverture img { width: 100%; margin: 4mm 0 5mm; }
+  .sommaire { columns: 2; column-gap: 8mm; font-size: 10pt; }
+  .sommaire li { break-inside: avoid; }
+
+  .grille { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; }
+  .carte-piece { border: 1px solid var(--line); border-radius: 2mm; padding: 2mm; break-inside: avoid; }
+  .carte-piece img { height: 38mm; width: 100%; object-fit: contain; }
+  .carte-piece h4 { margin: 1mm 0 .5mm; font-size: 9.5pt; }
+  .carte-piece p { margin: 0; font-size: 8.4pt; color: var(--muted); }
+  .inventaire { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2.5mm; }
+  .item { border: 1px solid var(--line); border-radius: 2mm; padding: 1.5mm; text-align: center; break-inside: avoid; }
+  .item img { height: 22mm; width: 100%; object-fit: contain; }
+  .item b { display: block; font-size: 10pt; }
+  .item span { display: block; font-size: 8pt; color: var(--muted); line-height: 1.25; }
+  .item.sans-image { display: flex; flex-direction: column; justify-content: center; min-height: 31mm; }
+  svg { display: block; width: 100%; height: auto; }
+</style>
+</head>
+<body>
+
+<!-- Icône d'avertissement réutilisée -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="attention" viewBox="0 0 24 24"><path d="M12 2 1 21h22L12 2z" fill="#a24d17"/><rect x="11" y="8" width="2" height="7" fill="#fff"/><rect x="11" y="16.5" width="2" height="2" fill="#fff"/></symbol>
+  </defs>
+</svg>
+
+<!-- ======================================================================= -->
+<section class="couverture">
+  <h1>Porte magique</h1>
+  <p class="lede">Notice de montage d'une porte : le boîtier, son taquet motorisé, et ce qui se pose sur la porte.</p>
+  <img src="notice/img/apercu.png" alt="Le boîtier posé sur la clôture, taquet fermé devant le bord de la porte">
+  <h3>Dans cette notice</h3>
+  <ol class="sommaire">
+    <li>Avant de commencer : mesurer et choisir son taquet</li>
+    <li>Les pièces à imprimer</li>
+    <li>Les pièces du commerce</li>
+    <li>Monter le boîtier (étapes 1 à 9)</li>
+    <li>La façade et le taquet (étapes 10 et 11)</li>
+    <li>La pose sur la clôture (étapes 12 à 16)</li>
+    <li>La passerelle et l'entretien (étapes 17 et 18)</li>
+  </ol>
+  <p class="small">Version du 15 octobre 2026. Les fichiers à imprimer sont dans le dossier <span class="file">impression/</span> du dépôt, leurs sources dans <span class="file">cad/</span>.</p>
+</section>
+
+<!-- ======================================================================= -->
+<section class="page">
+  <h2>Avant de commencer</h2>
+
+  <h3>Le côté du boîtier</h3>
+  <p>Le boîtier se visse sur la clôture, contre le bord de la porte <strong>opposé aux charnières</strong>, à peu près à mi-hauteur de la porte.</p>
+  <ul>
+    <li><strong>Boîtier à gauche de la porte</strong> (ta porte : ses charnières sont à droite, côté poteau) : fichiers <span class="file">-gauche</span>.</li>
+    <li><strong>Boîtier à droite de la porte</strong> (sans doute celle du voisin, vue depuis son jardin) : fichiers <span class="file">-droite</span>.</li>
+  </ul>
+  <p>Le taquet, l'accouplement, le bouchon et la passerelle sont les mêmes des deux côtés.</p>
+
+  <h3 style="margin-top:5mm">Mesurer « d » et choisir son taquet</h3>
+  <div style="display:grid;grid-template-columns:1.15fr 1fr;gap:6mm;align-items:start">
+    <svg viewBox="0 0 520 300" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, system-ui, sans-serif">
+      <text x="260" y="22" font-size="14" text-anchor="middle" fill="#5b636e">Vue de dessus, porte fermée</text>
+      <!-- clôture -->
+      <rect x="20" y="210" width="480" height="34" fill="#dcc8a6" stroke="#2a2d31" stroke-width="1.5"/>
+      <text x="40" y="268" font-size="13" fill="#5b636e">clôture</text>
+      <!-- emplacement du boîtier -->
+      <rect x="40" y="90" width="150" height="120" fill="none" stroke="#5b636e" stroke-width="1.5" stroke-dasharray="6 5"/>
+      <text x="115" y="155" font-size="13" text-anchor="middle" fill="#5b636e">futur boîtier</text>
+      <!-- tasseau et porte -->
+      <rect x="290" y="180" width="40" height="30" fill="#e6d3b0" stroke="#2a2d31" stroke-width="1.5"/>
+      <rect x="310" y="168" width="190" height="12" fill="#c99b6b" stroke="#2a2d31" stroke-width="1.5"/>
+      <text x="420" y="160" font-size="13" text-anchor="middle" fill="#5b636e">porte</text>
+      <text x="310" y="200" font-size="11" text-anchor="middle" fill="#5b636e">cadre</text>
+      <!-- cote d -->
+      <line x1="190" y1="210" x2="250" y2="210" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <line x1="250" y1="168" x2="310" y2="168" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <line x1="245" y1="206" x2="245" y2="172" stroke="#c0392b" stroke-width="2.2"/>
+      <path d="M245 168 l-5 9 h10z M245 210 l-5 -9 h10z" fill="#c0392b"/>
+      <text x="228" y="196" font-size="22" font-weight="800" text-anchor="middle" fill="#c0392b">d</text>
+    </svg>
+    <div>
+      <p><strong>d</strong> = l'écart entre la clôture, là où se posera le dos du boîtier, et la <strong>face avant de la porte fermée</strong>. Pose une règle bien à plat sur la clôture et mesure jusqu'à la porte.</p>
+      <table>
+        <thead><tr><th>d mesuré</th><th>Taquet à imprimer</th></tr></thead>
+        <tbody>
+          <tr><td>0 à 5 mm</td><td><span class="file">taquet-doigt-60.stl</span></td></tr>
+          <tr><td>5 à 15 mm</td><td><span class="file">taquet-doigt-50.stl</span></td></tr>
+          <tr><td>15 à 25 mm</td><td><span class="file">taquet-doigt-40.stl</span></td></tr>
+          <tr><td>25 à 35 mm</td><td><span class="file">taquet-doigt-30.stl</span></td></tr>
+          <tr><td>35 à 45 mm</td><td><span class="file">taquet-doigt-20.stl</span></td></tr>
+        </tbody>
+      </table>
+      <p class="small">Le doigt s'arrête alors 1 à 11 mm devant la porte. Des patins collés au bout réduisent l'écart à 1 à 3 mm (étape 15). Pour une autre valeur, change la liste <code>doigts</code> dans <code>cad/parametres.js</code> puis lance <code>npm run stl</code>.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:5mm">Outils</h3>
+  <ul>
+    <li>Ton fer à souder, de l'étain au plomb de 0,8 mm et du flux (une seule étape de soudure, la plus facile).</li>
+    <li>Petit et moyen tournevis cruciformes, deux clés plates de 13, pince à dénuder, cutter.</li>
+    <li>Perceuse avec un foret de 3 mm (avant-trous dans la clôture), crayon, règle.</li>
+    <li>Multimètre (polarité de la batterie, contact de porte).</li>
+    <li>Un étau ou un serre-joint pour enfoncer le roulement (sinon, la vis M8 servira de presse).</li>
+  </ul>
+</section>
+
+<!-- ======================================================================= -->
+<section class="page">
+  <h2>Les pièces à imprimer</h2>
+  <p>Réglages communs : <strong>PETG</strong> (jamais de PLA dehors), buse de 0,4 mm, couches de 0,2 mm, 4 parois, 30 % de remplissage en gyroïde, <strong>sans support</strong>. Les fichiers sont déjà posés dans le bon sens : ne les retourne pas.</p>
+  <div class="grille">
+    <div class="carte-piece"><img src="notice/img/piece-fond.png" alt=""><h4>Fond du boîtier</h4><p><span class="file">boitier-fond-gauche.stl</span> ou <span class="file">-droite</span><br>1 pièce · dos sur le plateau · bordure (brim) de 5 mm si les coins décollent</p></div>
+    <div class="carte-piece"><img src="notice/img/piece-facade.png" alt=""><h4>Façade</h4><p><span class="file">boitier-facade-gauche.stl</span> ou <span class="file">-droite</span><br>1 pièce · face avant sur le plateau (la vue montre l'arrière)</p></div>
+    <div class="carte-piece"><img src="notice/img/piece-taquet.png" alt=""><h4>Taquet</h4><p><span class="file">taquet-doigt-XX.stl</span>, choisi avec « d »<br>1 pièce · doigt vers le haut · <strong>6 parois et 50 %</strong> : c'est lui qui encaisse les poussées</p></div>
+    <div class="carte-piece"><img src="notice/img/piece-accouplement.png" alt=""><h4>Accouplement</h4><p><span class="file">accouplement.stl</span><br>1 pièce · creux en croix sur le plateau · 100 % de remplissage</p></div>
+    <div class="carte-piece"><img src="notice/img/piece-bouchon.png" alt=""><h4>Bouchon de la prise USB</h4><p><span class="file">bouchon-usb.stl</span><br>1 pièce (imprimes-en deux, il se perd)</p></div>
+    <div class="carte-piece"><img src="notice/img/piece-passerelle.png" alt=""><h4>Boîtier de la passerelle</h4><p><span class="file">passerelle-fond.stl</span> et <span class="file">passerelle-couvercle.stl</span><br>Il reste dans la maison : le PLA convient</p></div>
+  </div>
+  <div class="attention"><svg class="ico"><use href="#attention"/></svg><div>Le logement du roulement, dans la façade, est <strong>serré exprès</strong>. S'il est impossible d'y faire entrer le roulement, ponce légèrement l'intérieur ; s'il y flotte, une goutte de colle cyanoacrylate le tiendra.</div></div>
+</section>
+
+<!-- ======================================================================= -->
+<section class="page">
+  <h2>Les pièces du commerce</h2>
+  <p>Pour une porte. Les lettres sont celles de la liste d'achat (<span class="file">materiel.pdf</span>) et des étapes.</p>
+  <div class="inventaire">
+    <div class="item"><img src="notice/img/inv-A.png" alt=""><b>A ×1</b><span>servo MG90S, avec son palonnier en croix et ses vis</span></div>
+    <div class="item"><img src="notice/img/inv-B.png" alt=""><b>B ×1</b><span>carte FireBeetle 2 ESP32-C6 et ses barrettes</span></div>
+    <div class="item"><img src="notice/img/inv-C.png" alt=""><b>C ×1</b><span>batterie LiPo 5 000 mAh</span></div>
+    <div class="item"><img src="notice/img/inv-D.png" alt=""><b>D ×1</b><span>module MOSFET à borniers</span></div>
+    <div class="item"><img src="notice/img/inv-E.png" alt=""><b>E ×3</b><span>bornes WAGO 221-413</span></div>
+    <div class="item"><img src="notice/img/inv-F.png" alt=""><b>F ×1</b><span>bouton 16 mm à anneau lumineux, pré-câblé</span></div>
+    <div class="item"><img src="notice/img/inv-G.png" alt=""><b>G ×1</b><span>contact magnétique et son aimant</span></div>
+    <div class="item"><img src="notice/img/inv-H.png" alt=""><b>H ×1</b><span>roulement 608 2RS</span></div>
+    <div class="item"><img src="notice/img/inv-J.png" alt=""><b>J ×1</b><span>vis M8 × 30</span></div>
+    <div class="item"><img src="notice/img/inv-K.png" alt=""><b>K ×1</b><span>écrou Nylstop M8</span></div>
+    <div class="item"><img src="notice/img/inv-L.png" alt=""><b>L ×3</b><span>rondelles M8</span></div>
+    <div class="item"><img src="notice/img/inv-M.png" alt=""><b>M ×1</b><span>presse-étoupe M12</span></div>
+    <div class="item"><img src="notice/img/inv-N.png" alt=""><b>N ×4</b><span>inserts filetés M3</span></div>
+    <div class="item"><img src="notice/img/inv-P.png" alt=""><b>P ×4</b><span>vis M3 × 12</span></div>
+    <div class="item"><img src="notice/img/inv-Q.png" alt=""><b>Q ×4</b><span>vis à bois 4 × 30</span></div>
+    <div class="item sans-image"><b>R ×1</b><span>charnière à ressort, avec vis et écrous M4</span></div>
+    <div class="item sans-image"><b>S ×1</b><span>loqueteau magnétique</span></div>
+    <div class="item sans-image"><b>T ×1</b><span>sangle velcro 20 mm, environ 25 cm</span></div>
+    <div class="item sans-image"><b>U</b><span>joint mousse 6 × 3 mm, environ 50 cm</span></div>
+    <div class="item sans-image"><b>V</b><span>patins en caoutchouc adhésifs</span></div>
+    <div class="item sans-image"><b>W</b><span>fils Dupont (mâle-femelle et femelle-femelle)</span></div>
+    <div class="item sans-image"><b>X ×1</b><span>rallonge JST-PH 2.0 à 2 broches</span></div>
+    <div class="item sans-image"><b>Y</b><span>adhésif double face mousse</span></div>
+    <div class="item sans-image"><b>+</b><span>un sachet de gel de silice</span></div>
+    <div class="item sans-image"><b>+</b><span>passerelle : une seconde carte B, un câble USB-C et un chargeur</span></div>
+  </div>
+</section>
+
+<!-- ======================================================================= -->
+<section class="page">
+  <h2>Monter le boîtier</h2>
+
+  <div class="step">
+    <div class="num">1</div>
+    <div>
+      <h3>Les inserts filetés</h3>
+      <div class="fig"><img src="notice/img/e-inserts.png" alt=""></div>
+      <ol class="actions">
+        <li>Pose un insert <span class="lettre">N</span> sur chacun des quatre plots du fond, côté le plus large en haut.</li>
+        <li>Pose la pointe du fer dedans et laisse l'insert descendre tout seul, bien droit, jusqu'à ce qu'il affleure.</li>
+        <li>Retire le fer sans tirer sur l'insert.</li>
+      </ol>
+      <div class="attention"><svg class="ico"><use href="#attention"/></svg><div>Ne force pas : c'est la chaleur qui fait le travail. Ton fer n'est pas réglable et chauffe fort : va doucement, sinon l'insert s'enfonce de travers.</div></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">2</div>
+    <div>
+      <h3>Souder les barrettes de la carte</h3>
+      <p>C'est la seule soudure. Si ta carte <span class="lettre">B</span> arrive avec ses barrettes déjà soudées, saute cette étape.</p>
+      <svg viewBox="0 0 760 250" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, system-ui, sans-serif">
+        <!-- Panneau 1 : chauffer -->
+        <g>
+          <rect x="20" y="150" width="200" height="14" fill="#2f6b4f"/>
+          <rect x="95" y="146" width="50" height="4" fill="#d69b3a"/><rect x="95" y="164" width="50" height="4" fill="#d69b3a"/>
+          <rect x="115" y="60" width="10" height="150" fill="#b4b9c1" stroke="#2a2d31"/>
+          <rect x="100" y="164" width="40" height="16" fill="#2a2d31"/>
+          <path d="M160 100 L128 143 L134 147 L170 108 z" fill="#8a9099" stroke="#2a2d31"/>
+          <rect x="165" y="40" width="22" height="80" transform="rotate(38 176 80)" fill="#5b636e"/>
+          <text x="120" y="232" font-size="15" font-weight="700" text-anchor="middle">1. Chauffe 2 secondes</text>
+          <text x="120" y="248" font-size="12" text-anchor="middle" fill="#5b636e">la broche ET la pastille</text>
+        </g>
+        <!-- Panneau 2 : apporter l'étain -->
+        <g transform="translate(260 0)">
+          <rect x="20" y="150" width="200" height="14" fill="#2f6b4f"/>
+          <rect x="95" y="146" width="50" height="4" fill="#d69b3a"/><rect x="95" y="164" width="50" height="4" fill="#d69b3a"/>
+          <rect x="115" y="60" width="10" height="150" fill="#b4b9c1" stroke="#2a2d31"/>
+          <rect x="100" y="164" width="40" height="16" fill="#2a2d31"/>
+          <path d="M160 100 L128 143 L134 147 L170 108 z" fill="#8a9099" stroke="#2a2d31"/>
+          <path d="M30 70 Q60 90 104 140" stroke="#9aa0a8" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M100 146 Q120 128 140 146 z" fill="#c9ced6" stroke="#2a2d31"/>
+          <text x="120" y="232" font-size="15" font-weight="700" text-anchor="middle">2. Apporte l'étain</text>
+          <text x="120" y="248" font-size="12" text-anchor="middle" fill="#5b636e">de l'autre côté : il coule tout seul</text>
+        </g>
+        <!-- Panneau 3 : résultat -->
+        <g transform="translate(520 0)">
+          <rect x="10" y="150" width="100" height="14" fill="#2f6b4f"/>
+          <rect x="35" y="146" width="50" height="4" fill="#d69b3a"/>
+          <rect x="55" y="60" width="10" height="150" fill="#b4b9c1" stroke="#2a2d31"/>
+          <path d="M35 147 Q52 140 56 112 L64 112 Q68 140 85 147 z" fill="#c9ced6" stroke="#2a2d31"/>
+          <circle cx="60" cy="40" r="15" fill="#36b37e"/><path d="M52 40 l6 6 l10 -12" stroke="#fff" stroke-width="3.5" fill="none"/>
+          <rect x="130" y="150" width="100" height="14" fill="#2f6b4f"/>
+          <rect x="155" y="146" width="50" height="4" fill="#d69b3a"/>
+          <rect x="175" y="60" width="10" height="150" fill="#b4b9c1" stroke="#2a2d31"/>
+          <circle cx="180" cy="128" r="17" fill="#c9ced6" stroke="#2a2d31"/>
+          <circle cx="180" cy="40" r="15" fill="#e0533f"/><path d="M173 33 l14 14 M187 33 l-14 14" stroke="#fff" stroke-width="3.5"/>
+          <text x="120" y="232" font-size="15" font-weight="700" text-anchor="middle">3. Un petit cône brillant</text>
+          <text x="120" y="248" font-size="12" text-anchor="middle" fill="#5b636e">pas une boule posée dessus</text>
+        </g>
+      </svg>
+      <ol class="actions">
+        <li>Plante les deux barrettes dans un morceau de polystyrène, à l'écartement de la carte, puis pose la carte dessus, <strong>puce vers le haut</strong> : les grandes broches dépasseront vers le haut, du côté des composants.</li>
+        <li>Retourne l'ensemble et soude par-dessous : d'abord une broche à chaque bout, vérifie que les barrettes sont droites, puis toutes les autres.</li>
+        <li>Pointe du fer propre et étamée (essuie-la sur l'éponge humide), 2 secondes par broche, l'étain au plomb fait le reste.</li>
+      </ol>
+      <div class="astuce">Ton fer convient très bien : ces broches sont espacées de 2,54 mm, c'est la soudure qu'on apprend en premier. Entraîne-toi sur deux ou trois broches au bout d'une barrette de rechange.</div>
+    </div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="step">
+    <div class="num">3</div>
+    <div>
+      <h3>Le servo</h3>
+      <div class="fig"><img src="notice/img/e-servo.png" alt=""></div>
+      <ol class="actions">
+        <li>Pose le servo <span class="lettre">A</span> entre les deux joues de son berceau, en haut à droite, <strong>axe vers toi</strong> et fil vers la gauche.</li>
+        <li>Visse ses deux pattes sur les plots avec les deux vis livrées avec le servo. Le servo pend à ses pattes : il peut ne pas toucher le fond.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">4</div>
+    <div>
+      <h3>L'accouplement</h3>
+      <div class="fig"><img src="notice/img/e-accouplement.png" alt=""></div>
+      <ol class="actions">
+        <li>Enfonce le <strong>palonnier en croix</strong> (dans le sachet du servo) dans le creux en croix de l'accouplement. S'il dépasse, recoupe le bout de ses bras au cutter.</li>
+        <li>Pose l'accouplement sur l'axe du servo, croix contre le servo.</li>
+        <li>Passe la vis centrale du servo par le trou de l'accouplement et visse-la dans l'axe.</li>
+      </ol>
+      <div class="attention"><svg class="ico"><use href="#attention"/></svg><div>Ne fais pas tourner l'axe du servo à la main en forçant : ses pignons n'aiment pas ça.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="step">
+    <div class="num">5</div>
+    <div>
+      <h3>La carte et la batterie</h3>
+      <div class="fig"><img src="notice/img/e-carte.png" alt=""></div>
+      <ol class="actions">
+        <li>Colle la carte <span class="lettre">B</span> sur ses deux appuis avec l'adhésif <span class="lettre">Y</span>, <strong>prise USB-C contre le trou du bas</strong>.</li>
+        <li>Passe la sangle <span class="lettre">T</span> par les deux fentes du fond : elle passe derrière, dans la rainure.</li>
+        <li>Pose la batterie <span class="lettre">C</span> dans son berceau, fil en haut à gauche, et serre la sangle. Ne la branche pas encore.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">!</div>
+    <div>
+      <h3>Vérifier la polarité de la batterie</h3>
+      <svg viewBox="0 0 760 200" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, system-ui, sans-serif">
+        <rect x="20" y="40" width="150" height="110" rx="10" fill="#c8cdd5" stroke="#2a2d31" stroke-width="1.5"/>
+        <text x="95" y="100" font-size="15" font-weight="700" text-anchor="middle">batterie C</text>
+        <path d="M170 80 H260" stroke="#e0533f" stroke-width="5"/><path d="M170 110 H260" stroke="#2a2d31" stroke-width="5"/>
+        <rect x="260" y="70" width="40" height="50" fill="#f4f3ef" stroke="#2a2d31" stroke-width="1.5"/>
+        <text x="280" y="140" font-size="11" text-anchor="middle" fill="#5b636e">rallonge X</text>
+        <path d="M300 80 H360" stroke="#e0533f" stroke-width="5"/><path d="M300 110 H360" stroke="#2a2d31" stroke-width="5"/>
+        <text x="372" y="84" font-size="13" fill="#5b636e">dénudé</text>
+        <!-- multimètre -->
+        <rect x="470" y="30" width="130" height="150" rx="12" fill="#f5c15a" stroke="#2a2d31" stroke-width="1.5"/>
+        <rect x="485" y="45" width="100" height="44" rx="4" fill="#e9efe9" stroke="#2a2d31"/>
+        <text x="535" y="76" font-size="22" font-weight="800" text-anchor="middle" font-family="Consolas, monospace">+3.92</text>
+        <text x="535" y="118" font-size="13" text-anchor="middle">V ⎓</text>
+        <path d="M430 80 Q450 60 490 150" stroke="#e0533f" stroke-width="3" fill="none"/>
+        <path d="M430 110 Q470 120 520 160" stroke="#2a2d31" stroke-width="3" fill="none"/>
+        <text x="650" y="78" font-size="14" fill="#36b37e" font-weight="700">« + » : bon</text>
+        <text x="650" y="108" font-size="14" fill="#c0392b" font-weight="700">« − » : inversé</text>
+      </svg>
+      <ol class="actions">
+        <li>Coupe la rallonge <span class="lettre">X</span> en deux, au milieu, et dénude 1 cm des quatre fils.</li>
+        <li>Branche la batterie sur la moitié qui la reçoit. Multimètre en volts continus, pointe rouge sur le fil rouge, noire sur le noir : tu dois lire <strong>+3,7 à +4,2 V</strong>. Si tu lis un « − », les couleurs sont inversées : c'est le fil noir qui est le +, retiens-le.</li>
+        <li>Pour l'autre moitié, celle qui va dans la prise <strong>BAT</strong> de la carte : branche-la, multimètre en mode « bip », touche la soudure marquée <strong>+</strong> à l'arrière de la prise et l'un des fils : celui qui bipe ira au <strong>+</strong>.</li>
+      </ol>
+      <div class="attention"><svg class="ico"><use href="#attention"/></svg><div>Un + et un − inversés détruisent la carte en un instant. Ne branche jamais la batterie sur la carte sans avoir fait ces deux vérifications. Ne perce ni n'écrase la batterie ; si elle gonfle, remplace-la.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="step">
+    <div class="num">6</div>
+    <div>
+      <h3>Le module MOSFET et les bornes WAGO</h3>
+      <div class="fig"><img src="notice/img/e-mosfet.png" alt=""></div>
+      <ol class="actions">
+        <li>Colle le module <span class="lettre">D</span> dans le bac du haut, borniers bien accessibles.</li>
+        <li>Colle les trois bornes <span class="lettre">E</span> dans leurs cases, leviers vers toi.</li>
+        <li>Repère-les avec un bout d'adhésif de couleur : <strong>W1 = +</strong> (rouge), <strong>W2 = −</strong> (noir), <strong>W3 = masse des contacts</strong> (bleu).</li>
+      </ol>
+      <div class="attention"><svg class="ico"><use href="#attention"/></svg><div>Si le module a une petite LED qui reste allumée dès qu'il est alimenté, casse-la avec une pince coupante : à elle seule, elle viderait la batterie en quelques semaines.</div></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">7</div>
+    <div>
+      <h3>Le presse-étoupe et le fil du contact</h3>
+      <div class="fig"><img src="notice/img/e-presse-etoupe.png" alt=""></div>
+      <ol class="actions">
+        <li>Visse le presse-étoupe <span class="lettre">M</span> dans le trou rond du bas, écrou à l'intérieur.</li>
+        <li>Passe le fil du contact de porte <span class="lettre">G</span> de l'extérieur vers l'intérieur, laisse 15 cm dans le boîtier, puis serre le capuchon : il pince le fil et ferme le passage.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================= -->
+<section class="page cablage">
+  <div class="step" style="margin-bottom:2mm">
+    <div class="num">8</div>
+    <div>
+      <h3>Le câblage</h3>
+      <p>Batterie <strong>débranchée</strong> pendant tout le câblage. Fils Dupont <span class="lettre">W</span> : bout femelle sur les broches de la carte ; de l'autre côté, coupe et dénude 8 mm pour les WAGO et les borniers, ou garde un bout mâle pour le connecteur du servo.</p>
+    </div>
+  </div>
+  <svg viewBox="0 0 780 560" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, system-ui, sans-serif" font-size="12">
+    <!-- Carte -->
+    <rect x="30" y="20" width="150" height="380" rx="8" fill="#f4f6f8" stroke="#2a2d31" stroke-width="1.5"/>
+    <text x="105" y="44" text-anchor="middle" font-weight="800" font-size="14">B · carte</text>
+    <text x="105" y="60" text-anchor="middle" fill="#5b636e">FireBeetle 2 ESP32-C6</text>
+    <g font-weight="700" text-anchor="end">
+      <text x="170" y="94">3V3</text><text x="170" y="129">1/D6</text><text x="170" y="164">19/SDA</text><text x="170" y="199">7/D1</text>
+      <text x="170" y="234">GND</text><text x="170" y="269">6/D12</text><text x="170" y="304">14/D3</text><text x="170" y="339">18/D7</text><text x="170" y="374">GND</text>
+    </g>
+    <g fill="#2a2d31"><circle cx="180" cy="90" r="4"/><circle cx="180" cy="125" r="4"/><circle cx="180" cy="160" r="4"/><circle cx="180" cy="195" r="4"/><circle cx="180" cy="230" r="4"/><circle cx="180" cy="265" r="4"/><circle cx="180" cy="300" r="4"/><circle cx="180" cy="335" r="4"/><circle cx="180" cy="370" r="4"/></g>
+    <rect x="80" y="392" width="50" height="16" fill="#fff" stroke="#2a2d31"/><text x="105" y="404" text-anchor="middle" font-size="10" font-weight="700">BAT</text>
+
+    <!-- Bouton -->
+    <rect x="340" y="40" width="150" height="150" rx="8" fill="#f4f6f8" stroke="#2a2d31" stroke-width="1.5"/>
+    <text x="415" y="64" text-anchor="middle" font-weight="800" font-size="14">F · bouton</text>
+    <g><text x="350" y="94">LED commun</text><text x="350" y="129">LED rouge</text><text x="350" y="164">LED vert</text><text x="430" y="186">NO</text><text x="458" y="186">C</text></g>
+    <g fill="#2a2d31"><circle cx="340" cy="90" r="4"/><circle cx="340" cy="125" r="4"/><circle cx="340" cy="160" r="4"/><circle cx="437" cy="190" r="4"/><circle cx="462" cy="190" r="4"/></g>
+
+    <!-- W3 -->
+    <rect x="300" y="215" width="60" height="30" rx="5" fill="#d7e3f7" stroke="#2a2d31" stroke-width="1.5"/><text x="330" y="235" text-anchor="middle" font-weight="800">W3</text>
+
+    <!-- Contact -->
+    <rect x="560" y="205" width="150" height="70" rx="8" fill="#f4f6f8" stroke="#2a2d31" stroke-width="1.5"/>
+    <text x="635" y="230" text-anchor="middle" font-weight="800" font-size="14">G · contact</text>
+    <g><text x="572" y="258">COM</text><text x="640" y="258">NO</text></g>
+    <g fill="#2a2d31"><circle cx="560" cy="225" r="4"/><circle cx="560" cy="255" r="4"/></g>
+
+    <!-- Servo -->
+    <rect x="560" y="290" width="150" height="80" rx="8" fill="#f4f6f8" stroke="#2a2d31" stroke-width="1.5"/>
+    <text x="635" y="312" text-anchor="middle" font-weight="800" font-size="14">A · servo</text>
+    <g><text x="572" y="331">signal (orange)</text><text x="572" y="347">+ (rouge)</text><text x="572" y="363">− (marron)</text></g>
+    <g fill="#2a2d31"><circle cx="560" cy="327" r="4"/><circle cx="560" cy="343" r="4"/><circle cx="560" cy="359" r="4"/></g>
+
+    <!-- Module -->
+    <rect x="340" y="390" width="150" height="100" rx="8" fill="#f4f6f8" stroke="#2a2d31" stroke-width="1.5"/>
+    <text x="415" y="440" text-anchor="middle" font-weight="800" font-size="14">D · module</text>
+    <g><text x="372" y="408" text-anchor="middle">PWM</text><text x="428" y="408" text-anchor="middle">GND</text><text x="350" y="465">VIN+</text><text x="350" y="483">VIN−</text><text x="480" y="465" text-anchor="end">OUT+</text><text x="480" y="483" text-anchor="end">OUT−</text></g>
+    <g fill="#2a2d31"><circle cx="372" cy="390" r="4"/><circle cx="428" cy="390" r="4"/><circle cx="340" cy="461" r="4"/><circle cx="340" cy="479" r="4"/><circle cx="490" cy="461" r="4"/><circle cx="490" cy="479" r="4"/></g>
+
+    <!-- W1 W2 -->
+    <rect x="215" y="440" width="60" height="30" rx="5" fill="#f6d3cd" stroke="#2a2d31" stroke-width="1.5"/><text x="245" y="460" text-anchor="middle" font-weight="800">W1 +</text>
+    <rect x="215" y="500" width="60" height="30" rx="5" fill="#d9dbdf" stroke="#2a2d31" stroke-width="1.5"/><text x="245" y="520" text-anchor="middle" font-weight="800">W2 −</text>
+
+    <!-- Batterie -->
+    <rect x="30" y="460" width="120" height="80" rx="8" fill="#c8cdd5" stroke="#2a2d31" stroke-width="1.5"/>
+    <text x="90" y="505" text-anchor="middle" font-weight="800" font-size="14">C · batterie</text>
+
+    <!-- Fils -->
+    <g fill="none" stroke-width="3" stroke-linecap="round">
+      <path d="M150 478 L215 452" stroke="#e0533f"/>                 <!-- 1 -->
+      <path d="M150 522 L215 518" stroke="#2a2d31"/>                 <!-- 2 -->
+      <path d="M118 408 L118 430 L210 448" stroke="#e0533f"/>        <!-- 3 -->
+      <path d="M92 408 L92 440 L190 440 L210 512" stroke="#2a2d31"/> <!-- 4 -->
+      <path d="M275 455 L340 461" stroke="#e0533f"/>                 <!-- 5 -->
+      <path d="M275 515 L340 479" stroke="#2a2d31"/>                 <!-- 6 -->
+      <path d="M490 461 L530 461 L530 343 L560 343" stroke="#e0533f"/> <!-- 7 -->
+      <path d="M490 479 L545 479 L545 359 L560 359" stroke="#7a4b2a"/> <!-- 8 -->
+      <path d="M180 300 L520 300 L520 327 L560 327" stroke="#f08a24"/> <!-- 9 -->
+      <path d="M180 335 L372 335 L372 390" stroke="#d4a017"/>        <!-- 10 -->
+      <path d="M180 370 L428 370 L428 390" stroke="#2a2d31" stroke-dasharray="7 4"/> <!-- 11 -->
+      <path d="M180 195 L437 195 L437 190" stroke="#2f6fd0"/> <!-- 12 -->
+      <path d="M462 190 L462 205 L345 215" stroke="#2f6fd0" stroke-dasharray="7 4"/> <!-- 13 -->
+      <path d="M180 265 L400 265 L540 262 L560 255" stroke="#36b37e"/> <!-- 14 -->
+      <path d="M560 225 L360 228" stroke="#36b37e" stroke-dasharray="7 4"/> <!-- 15 -->
+      <path d="M180 230 L300 230" stroke="#2a2d31"/>                 <!-- 16 -->
+      <path d="M180 125 L340 125" stroke="#e0533f" stroke-width="2"/> <!-- 17 -->
+      <path d="M180 160 L340 160" stroke="#36b37e" stroke-width="2"/> <!-- 18 -->
+      <path d="M180 90 L340 90" stroke="#8e44ad" stroke-width="2"/>   <!-- 19 -->
+    </g>
+    <!-- Numéros des fils -->
+    <g font-size="11" font-weight="800" text-anchor="middle">
+      <g fill="#fff" stroke="#2a2d31" stroke-width="1.2">
+        <circle cx="182" cy="465" r="9"/><circle cx="182" cy="520" r="9"/><circle cx="150" cy="430" r="9"/>
+        <circle cx="200" cy="476" r="9"/><circle cx="307" cy="458" r="9"/><circle cx="307" cy="497" r="9"/><circle cx="530" cy="400" r="9"/><circle cx="545" cy="420" r="9"/>
+        <circle cx="350" cy="300" r="9"/><circle cx="280" cy="335" r="9"/><circle cx="280" cy="370" r="9"/><circle cx="250" cy="195" r="9"/><circle cx="400" cy="210" r="9"/>
+        <circle cx="300" cy="265" r="9"/><circle cx="460" cy="226" r="9"/><circle cx="240" cy="230" r="9"/><circle cx="260" cy="125" r="9"/><circle cx="260" cy="160" r="9"/><circle cx="260" cy="90" r="9"/>
+      </g>
+      <g fill="#2a2d31">
+        <text x="182" y="469">1</text><text x="182" y="524">2</text><text x="150" y="434">3</text>
+        <text x="200" y="480">4</text><text x="307" y="462">5</text><text x="307" y="501">6</text><text x="530" y="404">7</text><text x="545" y="424">8</text>
+        <text x="350" y="304">9</text><text x="280" y="339">10</text><text x="280" y="374">11</text><text x="250" y="199">12</text><text x="400" y="214">13</text>
+        <text x="300" y="269">14</text><text x="460" y="230">15</text><text x="240" y="234">16</text><text x="260" y="129">17</text><text x="260" y="164">18</text><text x="260" y="94">19</text>
+      </g>
+    </g>
+  </svg>
+
+  <table>
+    <thead><tr><th>N°</th><th>De</th><th>Vers</th><th>N°</th><th>De</th><th>Vers</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>batterie, fil +</td><td>W1</td><td>11</td><td>carte GND</td><td>module GND (à côté de PWM)</td></tr>
+      <tr><td>2</td><td>batterie, fil −</td><td>W2</td><td>12</td><td>carte 7/D1</td><td>bouton, contact NO</td></tr>
+      <tr><td>3</td><td>prise BAT, fil +</td><td>W1</td><td>13</td><td>bouton, contact C</td><td>W3</td></tr>
+      <tr><td>4</td><td>prise BAT, fil −</td><td>W2</td><td>14</td><td>carte 6/D12</td><td>contact de porte, NO</td></tr>
+      <tr><td>5</td><td>W1</td><td>module VIN+</td><td>15</td><td>contact de porte, COM</td><td>W3</td></tr>
+      <tr><td>6</td><td>W2</td><td>module VIN−</td><td>16</td><td>carte GND</td><td>W3</td></tr>
+      <tr><td>7</td><td>module OUT+</td><td>servo + (rouge)</td><td>17</td><td>carte 1/D6</td><td>LED rouge du bouton</td></tr>
+      <tr><td>8</td><td>module OUT−</td><td>servo − (marron)</td><td>18</td><td>carte 19/SDA</td><td>LED verte du bouton</td></tr>
+      <tr><td>9</td><td>carte 14/D3</td><td>servo signal (orange)</td><td>19</td><td>carte 3V3</td><td>LED commun du bouton (voir ci-dessous)</td></tr>
+      <tr><td>10</td><td>carte 18/D7</td><td>module PWM</td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+  <ul class="small" style="margin:0">
+    <li><strong>1 à 4</strong> : la rallonge <span class="lettre">X</span> coupée de l'étape « polarité ». Le + de la batterie et le + de la prise BAT vont tous les deux dans W1.</li>
+    <li><strong>19</strong> : si la fiche du bouton dit « anode commune » (+), le fil commun va sur 3V3 ; si elle dit « cathode commune » (−), il va sur un GND. Le programme saura s'adapter.</li>
+    <li><strong>14 et 15</strong> : garde les fils COM et NO du contact (le fil NC reste libre, isolé). Au multimètre en mode « bip », aimant collé contre le contact : COM et NO ne doivent <strong>pas</strong> biper. Sinon, prends NC à la place de NO.</li>
+    <li>Les noms des bornes du module varient : VIN+ et VIN− s'appellent parfois DC+ et DC−, PWM s'appelle parfois TRIG ou SIG.</li>
+    <li>Les broches sont désignées comme sur la carte (numéro de GPIO / repère D). Vérifie-les sur le <a href="https://wiki.dfrobot.com/SKU_DFR1075_FireBeetle_2_Board_ESP32_C6">schéma officiel de la carte</a> avant de brancher.</li>
+  </ul>
+</section>
+
+<section class="page">
+  <div class="step">
+    <div class="num">9</div>
+    <div>
+      <h3>Le programme et le premier essai</h3>
+      <p>Le programme de la porte et celui de la passerelle ne sont pas encore écrits : ils seront dans le dossier <span class="file">firmware/</span> du dépôt. Ils se chargeront par la prise USB-C du bas, boîtier fermé.</p>
+      <ol class="actions">
+        <li>Fais d'abord vérifier le câblage (une photo suffit).</li>
+        <li>Branche la batterie sur la moitié de rallonge qui la reçoit (fils 1 et 2 déjà dans W1 et W2), puis la prise BAT sur la carte.</li>
+        <li>Une fois le programme chargé : un appui sur le bouton allume le voyant, et le mode « montage » met le servo en position fermée pour l'étape 13.</li>
+      </ol>
+    </div>
+  </div>
+
+  <h2 style="margin-top:6mm">La façade et le taquet</h2>
+
+  <div class="step">
+    <div class="num">10</div>
+    <div>
+      <h3>Le roulement et le bouton</h3>
+      <div class="fig"><img src="notice/img/e-roulement.png" alt=""></div>
+      <ol class="actions">
+        <li>Par l'<strong>arrière</strong> de la façade, enfonce le roulement <span class="lettre">H</span> dans son logement, bien droit, jusqu'à la butée. Il est serré exprès : pousse-le avec un étau ou un serre-joint, ou serre-le avec la vis <span class="lettre">J</span>, deux rondelles et l'écrou <span class="lettre">K</span>, comme une presse.</li>
+        <li>Passe le bouton <span class="lettre">F</span> par l'avant de la façade, et visse son écrou à l'arrière, avec son joint côté façade.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="step">
+    <div class="num">11</div>
+    <div>
+      <h3>Le taquet</h3>
+      <div class="fig"><img src="notice/img/e-taquet.png" alt=""></div>
+      <ol class="actions">
+        <li>Pose la tête de la vis <span class="lettre">J</span> dans le logement hexagonal, à l'avant du taquet.</li>
+        <li>Enfile, dans l'ordre : <strong>deux rondelles <span class="lettre">L</span></strong>, la façade (par le roulement), <strong>une rondelle <span class="lettre">L</span></strong>, puis l'écrou <span class="lettre">K</span>.</li>
+        <li>Serre l'écrou avec deux clés de 13 jusqu'à ce que le taquet tourne sans jeu, sans forcer.</li>
+        <li>Termine le serrage avec <strong>un plat de l'écrou parallèle au bras du taquet</strong> : c'est ce qui l'alignera sur l'accouplement.</li>
+      </ol>
+      <div class="attention"><svg class="ico"><use href="#attention"/></svg><div>Le taquet doit tourner librement à la main. S'il frotte contre la façade, desserre d'un quart de tour.</div></div>
+    </div>
+  </div>
+
+  <h2 style="margin-top:4mm">La pose sur la clôture</h2>
+
+  <div class="step">
+    <div class="num">12</div>
+    <div>
+      <h3>Présenter et visser le fond</h3>
+      <div class="fig"><img src="notice/img/e-pose.png" alt=""></div>
+      <ol class="actions">
+        <li>Ferme provisoirement le boîtier (étape 13, sans les vis), <strong>taquet à l'horizontale</strong>, et présente-le contre la clôture : le doigt doit couvrir le bord de la porte sur toute sa largeur.</li>
+        <li>Marque les quatre trous des oreilles, perce des avant-trous de 3 mm, retire la façade.</li>
+        <li>Visse le fond avec les quatre vis <span class="lettre">Q</span>.</li>
+      </ol>
+      <div class="attention"><svg class="ico"><use href="#attention"/></svg><div>Pour ouvrir, le taquet se lève au-dessus du boîtier : laisse environ 5 cm de libre au-dessus, côté porte (pas de branche, pas de planche qui dépasse).</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="step">
+    <div class="num">13</div>
+    <div>
+      <h3>Fermer le boîtier</h3>
+      <div class="fig haute"><img src="notice/img/e-fermeture.png" alt=""></div>
+      <ol class="actions">
+        <li>Colle le joint mousse <span class="lettre">U</span> tout autour du rebord, sans le tendre, et mets un sachet de silice au fond.</li>
+        <li>Colle un patin <span class="lettre">V</span> au bout des deux appuis en croix, au dos de la façade : ils tiendront la batterie.</li>
+        <li>Mode « montage » du programme : le servo se met en position fermée. Taquet à l'horizontale, présente la façade : l'écrou entre dans l'accouplement.</li>
+        <li>Visse les quatre vis <span class="lettre">P</span> dans les inserts, en croix, jusqu'à ce que la façade touche les plots.</li>
+      </ol>
+      <div class="astuce">L'écrou coulisse dans l'accouplement : pour rouvrir le boîtier (recâbler, changer la batterie), il suffit de dévisser les quatre vis et de tirer la façade. Le taquet reste dessus.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">14</div>
+    <div>
+      <h3>Sur la porte</h3>
+      <div class="fig"><img src="notice/img/e-porte.png" alt=""></div>
+      <ol class="actions">
+        <li><span class="lettre">R</span> : remplace la charnière du milieu par la charnière à ressort, fixée par des vis M4 qui traversent la porte, rondelles et écrous de l'autre côté. Elle referme la porte doucement.</li>
+        <li><span class="lettre">S</span> : le loqueteau magnétique, près du bord libre : il tient la porte fermée quand elle est déverrouillée.</li>
+        <li><span class="lettre">G</span> : le contact sur le cadre, son aimant en face sur la porte, à moins d'1 cm l'un de l'autre quand la porte est fermée (adhésif fourni).</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="step">
+    <div class="num">15</div>
+    <div>
+      <h3>Régler le doigt</h3>
+      <div class="fig"><img src="notice/img/e-reglage.png" alt=""></div>
+      <ol class="actions">
+        <li>Porte fermée, taquet fermé : regarde de profil l'écart entre le bout du doigt et la porte. Il doit rester <strong>1 à 3 mm</strong>.</li>
+        <li>Trop d'écart : colle un ou deux patins <span class="lettre">V</span> au bout du doigt.</li>
+        <li>Le doigt frotte la porte : imprime le taquet de la taille en dessous (doigt plus court).</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">16</div>
+    <div>
+      <h3>Vérifier</h3>
+      <div class="duo">
+        <div class="fig"><img src="notice/img/e-ferme.png" alt=""><div class="legende"><strong>Fermé</strong> : taquet devant la porte, voyant rouge</div></div>
+        <div class="fig"><img src="notice/img/e-ouvert.png" alt=""><div class="legende"><strong>Ouvert</strong> : taquet levé ; voyant vert quand les deux portes sont ouvertes</div></div>
+      </div>
+      <ol class="actions" style="margin-top:2mm">
+        <li>Depuis l'autre côté, pousse la porte fermée : elle ne doit pas bouger de plus de 3 mm.</li>
+        <li>Ouvre, passe, laisse aller : la porte se referme seule et le contact la voit fermée.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="page">
+  <h2>La passerelle et l'entretien</h2>
+
+  <div class="step">
+    <div class="num">17</div>
+    <div>
+      <h3>La passerelle</h3>
+      <div class="fig"><img src="notice/img/e-passerelle.png" alt=""></div>
+      <ol class="actions">
+        <li>Pose une carte <span class="lettre">B</span>, sans barrettes, sur les appuis du boîtier de la passerelle, prise USB-C face à l'ouverture, et emboîte le couvercle.</li>
+        <li>Branche-la sur un chargeur USB, dans la maison, près d'une fenêtre côté jardin : à 5 ou 6 m de la porte, la portée suffit largement.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="num">18</div>
+    <div>
+      <h3>Recharger et entretenir</h3>
+      <div style="display:grid;grid-template-columns:42mm 1fr;gap:4mm;align-items:start">
+        <div class="fig" style="margin:0"><img src="notice/img/piece-bouchon.png" alt=""></div>
+        <ol class="actions">
+          <li>Quand l'appli prévient que la batterie baisse (tous les 3 à 5 mois) : retire le bouchon sous le boîtier, branche un câble USB-C sur un chargeur ou une batterie externe pendant une nuit, remets le bouchon.</li>
+          <li>Ne recharge jamais quand il gèle : attends une journée douce, ou rentre la batterie.</li>
+          <li>Une fois par an : change le sachet de silice, vérifie le joint et le serrage de l'écrou du taquet.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
