@@ -1,9 +1,10 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { Download, LoaderCircle, RotateCcw, X } from 'lucide-react'
+import { LoaderCircle, RotateCcw, Share, X } from 'lucide-react'
 import { glassButton, GLASS } from '@/components/ui/glass'
 import { formatBytes, stlUrl, type PrintPart } from '@/lib/montage'
+import { shareFile } from '@/lib/share-file'
 import { cn } from '@/lib/utils'
 
 interface Viewer {
@@ -23,6 +24,16 @@ export default function PieceViewer({ part, initialFile, onClose }: { part: Prin
   const hostRef = useRef<HTMLDivElement>(null)
   const viewer = useRef<Viewer | null>(null)
   const variant = part.variants.find(v => v.file === file) ?? part.variants[0]
+  const [message, setMessage] = useState<string | null>(null)
+
+  // Le fichier STL : feuille de partage sur le téléphone (Enregistrer dans Fichiers), téléchargement ailleurs
+  const exportStl = async () => {
+    setMessage(null)
+    const result = await shareFile(stlUrl(variant.file), variant.file, 'model/stl', part.title)
+    if (result === 'reessayer') setMessage('Fichier prêt : touchez « STL » encore une fois.')
+    if (result === 'impossible') setMessage('Ce téléphone ne sait pas enregistrer ce fichier : téléchargez-le depuis un ordinateur.')
+    if (result === 'echec') setMessage('Partage impossible. Vérifiez votre connexion.')
+  }
 
   useEffect(() => {
     const host = hostRef.current
@@ -196,15 +207,16 @@ export default function PieceViewer({ part, initialFile, onClose }: { part: Prin
               <p className="truncate font-mono text-footnote text-ink">{variant.file}</p>
               <p className="text-footnote text-ink-muted">{size ? `${size} · ${formatBytes(variant.bytes)}` : formatBytes(variant.bytes)}</p>
             </div>
-            <a
-              href={stlUrl(variant.file)}
-              download
+            <button
+              type="button"
+              onClick={exportStl}
               className="flex h-11 shrink-0 items-center gap-1.5 rounded-full bg-accent-fill px-4 text-subhead font-semibold text-white"
             >
-              <Download size={16} strokeWidth={2.4} aria-hidden="true" />
+              <Share size={16} strokeWidth={2.4} aria-hidden="true" />
               STL
-            </a>
+            </button>
           </div>
+          {message && <p className="text-footnote text-ink-muted">{message}</p>}
         </div>
       </div>
     </div>
