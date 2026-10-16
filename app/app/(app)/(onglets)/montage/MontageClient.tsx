@@ -153,7 +153,7 @@ function Purchases() {
                       rel="noopener noreferrer"
                       className="-mr-1 flex h-11 shrink-0 items-center gap-1 rounded-full bg-accent-soft px-3 text-footnote font-semibold text-accent"
                     >
-                      {item.shop === 'Amazon' ? 'Amazon' : 'Voir'}
+                      {item.shop || 'Voir'}
                       <ExternalLink size={13} strokeWidth={2.4} aria-hidden="true" />
                     </a>
                   )}

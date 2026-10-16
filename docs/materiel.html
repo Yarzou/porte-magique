@@ -37,6 +37,7 @@
   .box { display: inline-block; width: 3.3mm; height: 3.3mm; border: 1.2px solid var(--muted); border-radius: .7mm; margin-top: .6mm; }
   td.qty, td.price { white-space: nowrap; }
   td.price { text-align: right; }
+  td a { white-space: nowrap; }
   .small { font-size: 8.5pt; color: var(--muted); }
   .total td { font-weight: 700; background: var(--soft); }
   .break { break-before: page; }
@@ -46,7 +47,7 @@
 
 <h1>Porte magique</h1>
 <p class="lede">Matériel et liste d'achat pour motoriser les deux petites portes de la clôture</p>
-<p class="meta">Version du 15 octobre 2026 · prix indicatifs, à vérifier au moment de commander · la notice de montage est dans <strong>notice.pdf</strong></p>
+<p class="meta">Version du 16 octobre 2026 · prix indicatifs, à vérifier au moment de commander · la notice de montage est dans <strong>notice.pdf</strong></p>
 
 <div class="panel">
   <h3>Ce qui est décidé</h3>
@@ -68,7 +69,8 @@
 </figure>
 
 <h2 class="break">Liste d'achat</h2>
-<p>Quantités pour <strong>les deux portes et les deux passerelles</strong>. La lettre renvoie à la notice de montage. Chaque lien ouvre l'offre retenue sur Amazon.fr (prix relevés le 15 octobre 2026) ; si elle a disparu, choisis-en une qui respecte la colonne « À vérifier ».</p>
+<p>Quantités pour <strong>les deux portes et les deux passerelles</strong>. La lettre renvoie à la notice de montage. Trois commandes : les cartes chez Gotronic, presque tout le reste dans un seul panier AliExpress, et trois articles de marque chez Brico Dépôt (prix relevés le 16 octobre 2026).</p>
+<p>Sur AliExpress, le prix affiché est celui de la variante la moins chère : prends celle qu'indique la colonne « À vérifier », d'où les « ≈ ». Les articles Choice sont livrés gratuitement dès 10 € d'achat, en une à trois semaines. Si une offre a disparu, choisis-en une qui respecte la colonne « À vérifier ».</p>
 <p class="small">Seulement ce qui ne s'imprime pas. Pas dans la liste, car déjà à la maison : du <strong>PETG</strong> pour l'imprimante (pas de PLA dehors, il se déforme au soleil), le fer à souder et son étain, un multimètre, deux câbles USB-C et leurs chargeurs.</p>
 
 <table>
@@ -76,40 +78,43 @@
     <tr><th></th><th></th><th>Article</th><th>Qté</th><th>Prix</th><th>À vérifier</th><th>Lien</th></tr>
   </thead>
   <tbody>
-    <tr class="group"><td colspan="7">Électronique</td></tr>
-    <tr><td class="chk"><span class="box"></span></td><td class="ref">B</td><td>Carte <strong>DFRobot FireBeetle&nbsp;2 ESP32&#8209;C6</strong> (DFR1075)</td><td class="qty">4</td><td class="price">10–15 € pièce</td><td><strong>Pas sur Amazon.fr</strong> : boutique DFRobot ou revendeur d'électronique. 2 pour les portes, 2 pour les passerelles. Prise batterie et charge intégrées. Avec ses barrettes déjà soudées, plus aucune soudure.</td><td><a href="https://wiki.dfrobot.com/SKU_DFR1075_FireBeetle_2_Board_ESP32_C6">fiche</a></td></tr>
-    <tr><td class="chk"><span class="box"></span></td><td class="ref">C</td><td>Batterie LiPo <strong>AFTERTECH 955465</strong>, 3,7 V, 5 000 mAh, 65 × 54 × 9,5 mm, protection intégrée, prise JST&#8209;PH&nbsp;2.0</td><td class="qty">2</td><td class="price">15,42 € pièce</td><td>Si elle manque : 5 000 mAh au plus près, 11 × 56 × 86 mm au maximum, protection (PCM ou BMS), prise JST-PH 2.0.</td><td><a href="https://www.amazon.fr/dp/B0DND3SMTJ">Amazon</a></td></tr>
-    <tr><td class="chk"><span class="box"></span></td><td class="ref">A</td><td>Servos <strong>MG90S</strong> à pignons métal, lot de 2</td><td class="qty">1</td><td class="price">13,88 €</td><td>MG90S, ni SG90 ni « 360° ». Palonnier en croix fourni.</td><td><a href="https://www.amazon.fr/dp/B095YVLLFQ">Amazon</a></td></tr>
-    <tr><td class="chk"><span class="box"></span></td><td class="ref">D</td><td><strong>Modules MOSFET à borniers</strong> (double MOSFET, « trigger switch »), lot de 8</td><td class="qty">1</td><td class="price">6,94 €</td><td>Commandé dès 3,3 V. Il coupe le servo au repos. Une LED allumée en permanence se casse à la pince.</td><td><a href="https://www.amazon.fr/dp/B0DG8B58PM">Amazon</a></td></tr>
-    <tr><td class="chk"><span class="box"></span></td><td class="ref">E</td><td>Bornes <strong>WAGO 221-413</strong> (3 entrées), lot de 10</td><td class="qty">1</td><td class="price">7,10 €</td><td>Les vraies WAGO, à levier. 3 par porte.</td><td><a href="https://www.amazon.fr/dp/B07NK6L1PW">Amazon</a></td></tr>
-    <tr><td class="chk"><span class="box"></span></td><td class="ref">F</td><td>Bouton poussoir métal <strong>16 mm, momentané, anneau LED vert 3–6 V</strong>, pré-câblé</td><td class="qty">2</td><td class="price">10,95 € pièce</td><td>Variante « Green, 16MM_RESET_3-6V » (RESET = momentané). Expédié sous 4 à 5 jours.</td><td><a href="https://www.amazon.fr/dp/B0H1RMDM8W">Amazon</a></td></tr>
-    <tr><td class="chk"><span class="box"></span></td><td class="ref">G</td><td>Contacts magnétiques <strong>MC-38</strong>, filaires, en applique, lot de 3</td><td class="qty">1</td><td class="price">6,95 €</td><td>Deux fils. Pas de modèle encastré : le contreplaqué de 5 mm est trop mince.</td><td><a href="https://www.amazon.fr/dp/B093LBSDH1">Amazon</a></td></tr>
-    <tr><td class="chk"><span class="box"></span></td><td class="ref">W</td><td>Fils Dupont ELEGOO, 120 pièces (mâle-mâle, mâle-femelle, femelle-femelle)</td><td class="qty">1</td><td class="price">8,99 €</td><td>On coupe et dénude un bout pour les WAGO et les borniers.</td><td><a href="https://www.amazon.fr/dp/B01JD5WCG2">Amazon</a></td></tr>
-    <tr><td class="chk"><span class="box"></span></td><td class="ref">X</td><td>Fils <strong>JST&#8209;PH&nbsp;2.0</strong> à 2 broches, 20 paires (mâle et femelle)</td><td class="qty">1</td><td class="price">6,99 €</td><td>Une paire par porte : elle fait passer le courant de la batterie par les WAGO.</td><td><a href="https://www.amazon.fr/dp/B07NY8CQRV">Amazon</a></td></tr>
+    <tr class="group"><td colspan="7">Gotronic : les cartes</td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td class="ref">B</td><td>Carte <strong>DFRobot FireBeetle&nbsp;2 ESP32&#8209;C6</strong> (DFR1075)</td><td class="qty">4</td><td class="price">7,50 € pièce</td><td>2 pour les portes, 2 pour les passerelles. Prise batterie et charge intégrées, barrettes livrées à part, à souder. À 4 cartes, la lettre suivie est offerte (dès 30 €). Stock limité (13 le 16 octobre) ; sinon Farnell, environ 6 € pièce et 12 à 15 € de port.</td><td><a href="https://www.gotronic.fr/art-firebeetle-2-esp32-c6-dfr1075-38570.htm">Gotronic</a></td></tr>
 
-    <tr class="group"><td colspan="7">Mécanique et fixation</td></tr>
-    <tr><td class="chk"><span class="box"></span></td><td class="ref">H</td><td>Roulements <strong>608 2RS</strong>, lot de 4</td><td class="qty">1</td><td class="price">5,99 €</td><td>« 2RS » = étanche des deux côtés.</td><td><a href="https://www.amazon.fr/dp/B0FFSB9KJ4">Amazon</a></td></tr>
-    <tr><td class="chk"><span class="box"></span></td><td class="ref">J</td><td>Vis <strong>M8 × 30</strong> inox, tête hexagonale, lot de 10</td><td class="qty">1</td><td class="price">8,54 €</td><td>Tête de 13 sur plats.</td><td><a href="https://www.amazon.fr/dp/B0GFN4962Q">Amazon</a></td></tr>
-    <tr><td class="chk"><span class="box"></span></td><td class="ref">K</td><td>Écrous <strong>Nylstop M8</strong> inox (DIN 985), lot de 10</td><td class="qty">1</td><td class="price">6,49 €</td><td></td><td><a href="https://www.amazon.fr/dp/B0BJZNK8F5">Amazon</a></td></tr>
-    <tr><td class="chk"><span class="box"></span></td><td class="ref">L</td><td>Rondelles <strong>M8 × 16</strong> inox, lot de 10</td><td class="qty">1</td><td class="price">5,93 €</td><td>3 par porte.</td><td><a href="https://www.amazon.fr/dp/B0FHNLK61M">Amazon</a></td></tr>
-    <tr><td class="chk"><span class="box"></span></td><td class="ref">M</td><td>Presse-étoupes <strong>M12</strong> IP68, lot de 20</td><td class="qty">1</td><td class="price">8,99 €</td><td>Pour le fil du contact de porte.</td><td><a href="https://www.amazon.fr/dp/B0CYLMPC3C">Amazon</a></td></tr>
-    <tr><td class="chk"><span class="box"></span></td><td class="ref">N</td><td>Inserts filetés <strong>ruthex M3 × 5,7</strong> (Ø extérieur 4,6), lot de 100</td><td class="qty">1</td><td class="price">9,99 €</td><td>4 par boîtier, posés au fer.</td><td><a href="https://www.amazon.fr/dp/B08BCRZZS3">Amazon</a></td></tr>
-    <tr><td class="chk"><span class="box"></span></td><td class="ref">P</td><td>Vis <strong>M3 × 12</strong> inox, tête bombée, lot de 10</td><td class="qty">1</td><td class="price">6,91 €</td><td>4 par boîtier.</td><td><a href="https://www.amazon.fr/dp/B0F81WTZ3C">Amazon</a></td></tr>
-    <tr><td class="chk"><span class="box"></span></td><td class="ref">Q</td><td>Vis à bois inox <strong>4 × 30</strong>, tête fraisée, lot de 10</td><td class="qty">1</td><td class="price">9,29 €</td><td>4 par boîtier, dans la clôture.</td><td><a href="https://www.amazon.fr/dp/B09STC93Q8">Amazon</a></td></tr>
-    <tr><td class="chk"><span class="box"></span></td><td class="ref">U</td><td>Joint mousse adhésif <strong>6 × 3 mm</strong>, 5 m</td><td class="qty">1</td><td class="price">8,99 €</td><td>Environ 50 cm par boîtier.</td><td><a href="https://www.amazon.fr/dp/B0FDWY2BTW">Amazon</a></td></tr>
-    <tr><td class="chk"><span class="box"></span></td><td class="ref">Y</td><td>Adhésif double face mousse 3M 1600T, 19 mm × 3 m</td><td class="qty">1</td><td class="price">8,80 €</td><td>Sous la carte, le module et les WAGO, et pour l'aimant du contact sur la porte.</td><td><a href="https://www.amazon.fr/dp/B0C7CPRQYH">Amazon</a></td></tr>
+    <tr class="group"><td colspan="7">AliExpress : un seul panier</td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td class="ref">A</td><td>Servos <strong>MG90S</strong> à pignons métal, lot de 2</td><td class="qty">1</td><td class="price">≈ 4,60 €</td><td>Variante « 180° », pas « 360° » ; ni SG90. Palonnier en croix sur les photos.</td><td><a href="https://fr.aliexpress.com/item/1005008626768357.html">AliExpress</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td class="ref">C</td><td>Batterie LiPo <strong>955565</strong>, 3,7 V, 5 000 mAh, 9,5 × 55 × 65 mm, prise JST&#8209;PH&nbsp;2.0</td><td class="qty">2</td><td class="price">6,79 € pièce</td><td>Hors Choice : port compté à part. Protection (PCM, petite carte sous l'adhésif) visible sur les photos. 11 × 56 × 86 mm au maximum. Pour une marque vendue en France : AFTERTECH 955465 sur Amazon, 15,42 €.</td><td><a href="https://fr.aliexpress.com/item/1005008977132602.html">AliExpress</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td class="ref">D</td><td><strong>Modules MOSFET à borniers</strong> (double MOSFET, 15 A / 400 W), lot de 5</td><td class="qty">1</td><td class="price">3,59 €</td><td>Commandé dès 3,3 V, 34 × 17 mm. Il coupe le servo au repos. Une LED allumée en permanence se casse à la pince.</td><td><a href="https://fr.aliexpress.com/item/1005008661386999.html">AliExpress</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td class="ref">F</td><td>Bouton poussoir métal <strong>16 mm, momentané, anneau LED vert</strong>, avec fils</td><td class="qty">2</td><td class="price">≈ 2,50 € pièce</td><td>Variante 16 mm, « momentané » (pas « autobloquant »), vert, « avec fil ». LED 3 V si elle est proposée, sinon 5 V : le voyant sera un peu moins vif.</td><td><a href="https://fr.aliexpress.com/item/1005006477375437.html">AliExpress</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td class="ref">G</td><td>Contact magnétique <strong>MC-38</strong>, filaire, en applique</td><td class="qty">2</td><td class="price">1,53 € pièce</td><td>Deux fils, NF ou NO : le programme s'adaptera. Pas de modèle encastré : le contreplaqué de 5 mm est trop mince.</td><td><a href="https://fr.aliexpress.com/item/1005012057308503.html">AliExpress</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td class="ref">H</td><td>Roulements <strong>608 2RS</strong> (8 × 22 × 7), lot de 4</td><td class="qty">1</td><td class="price">4,29 €</td><td>« 2RS » = joints caoutchouc des deux côtés, pas « ZZ ».</td><td><a href="https://fr.aliexpress.com/item/1005008699838734.html">AliExpress</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td class="ref">J</td><td>Vis <strong>M8 × 30</strong> inox 304, tête hexagonale (DIN 933), lot de 2</td><td class="qty">1</td><td class="price">≈ 2 €</td><td>Variante M8 × 30. Tête de 13 sur plats.</td><td><a href="https://fr.aliexpress.com/item/1005006090579821.html">AliExpress</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td class="ref">K</td><td>Écrous <strong>Nylstop M8</strong> inox 304 (DIN 985)</td><td class="qty">1</td><td class="price">≈ 2,50 €</td><td>Variante M8, le plus petit lot. Ni « 304 ou acier », ni noirs.</td><td><a href="https://fr.aliexpress.com/item/1005006995103839.html">AliExpress</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td class="ref">L</td><td>Rondelles plates <strong>M8</strong> inox (DIN 125, Ø 16 mm)</td><td class="qty">1</td><td class="price">≈ 1,50 €</td><td>Variante M8, au moins 6 (3 par porte). Pas de « grande rondelle » de Ø 24.</td><td><a href="https://fr.aliexpress.com/item/4000174460068.html">AliExpress</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td class="ref">M</td><td>Presse-étoupes <strong>M12 × 1,5</strong> IP68, lot de 2</td><td class="qty">1</td><td class="price">≈ 1,40 €</td><td>Pour le fil du contact de porte : câble de 3 à 6,5 mm. Pas de PG7.</td><td><a href="https://fr.aliexpress.com/item/1005007639692634.html">AliExpress</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td class="ref">N</td><td>Inserts filetés <strong>M3 × 5,7</strong>, Ø extérieur 4,6, lot de 100</td><td class="qty">1</td><td class="price">4,69 €</td><td>Les deux cotes comptent : pas de « M3 × 5 × 4 » (type Voron). 4 par boîtier, posés au fer.</td><td><a href="https://fr.aliexpress.com/item/1005007995311296.html">AliExpress</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td class="ref">P</td><td>Vis <strong>M3 × 12</strong> inox, tête bombée (ISO 7380), lot de 10</td><td class="qty">1</td><td class="price">≈ 2,50 €</td><td>Variante M3 × 12. 4 par boîtier.</td><td><a href="https://fr.aliexpress.com/item/1005009071376795.html">AliExpress</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td class="ref">U</td><td>Joint mousse adhésif <strong>3 mm d'épaisseur</strong>, 5 mm de large, 5 m</td><td class="qty">1</td><td class="price">≈ 2,10 €</td><td>L'épaisseur compte : 3 mm, que la façade écrase à 2. Environ 50 cm par boîtier.</td><td><a href="https://fr.aliexpress.com/item/1005007171051343.html">AliExpress</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td class="ref">W</td><td>Fils Dupont <strong>mâle-femelle</strong>, 20 cm, nappe de 40</td><td class="qty">1</td><td class="price">≈ 2 €</td><td>Bout femelle sur la carte ; l'autre se coupe pour les WAGO et les borniers, ou reste mâle pour le servo.</td><td><a href="https://fr.aliexpress.com/item/32966292996.html">AliExpress</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td class="ref">X</td><td>Fils <strong>JST&#8209;PH&nbsp;2.0</strong> à 2 broches, mâle et femelle, 10 paires</td><td class="qty">1</td><td class="price">1,38 €</td><td>Variante PH2.0 2P (ni 1,25 mm ni XH). Une paire par porte : elle fait passer le courant de la batterie par les WAGO.</td><td><a href="https://fr.aliexpress.com/item/4000091077742.html">AliExpress</a></td></tr>
+
+    <tr class="group"><td colspan="7">Brico Dépôt : trois articles de marque</td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td class="ref">E</td><td>Bornes <strong>WAGO 221-413</strong> (3 entrées), sachet de 10</td><td class="qty">1</td><td class="price">6,49 €</td><td>Les vraies WAGO, à levier (série 221) : les copies n'ont pas toujours les mêmes cotes. 3 par porte. Castorama : 8,59 €.</td><td><a href="https://www.bricodepot.fr/p/3662366024136/sachet-de-10-bornes-3-entrees">Brico Dépôt</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td class="ref">Q</td><td>Vis inox A2 <strong>4 × 30</strong>, tête fraisée, sachet de 20</td><td class="qty">1</td><td class="price">3,19 €</td><td>4 par boîtier, dans la clôture. Castorama : 5,69 €.</td><td><a href="https://www.bricodepot.fr/p/5063022017659/sachet-de-20-vis-multi-usage-tete-fraisee-posidriv-4-x-30-mm-acier-inoydable-a2">Brico Dépôt</a></td></tr>
+    <tr><td class="chk"><span class="box"></span></td><td class="ref">Y</td><td>Adhésif double face extérieur <strong>3M</strong>, 19 mm × 1,5 m</td><td class="qty">1</td><td class="price">7,99 €</td><td>Sous la carte, le module et les WAGO, et pour l'aimant du contact sur la porte. Un vrai 3M : ceux d'AliExpress sont souvent des copies. Castorama : 8,45 €.</td><td><a href="https://www.bricodepot.fr/p/4054596685796/ruban-adhesif-double-face-exterieur-19-mm-x-1-5-m">Brico Dépôt</a></td></tr>
   </tbody>
 </table>
 
 <table>
   <tbody>
-    <tr class="total"><td>Panier Amazon : tout sauf les cartes (20 articles)</td><td class="price">183,51 €</td></tr>
-    <tr class="total"><td>Quatre cartes FireBeetle, hors Amazon (sans le port)</td><td class="price">≈ 50 €</td></tr>
-    <tr class="total"><td>Commande complète pour les deux portes, lots compris</td><td class="price">≈ 235 €</td></tr>
-    <tr class="total"><td>Par porte : pièces posées et passerelle comprises</td><td class="price">≈ 80 €</td></tr>
+    <tr class="total"><td>Gotronic : 4 cartes, port offert</td><td class="price">30,00 €</td></tr>
+    <tr class="total"><td>AliExpress : 15 articles, plus le port des batteries</td><td class="price">≈ 55 €</td></tr>
+    <tr class="total"><td>Brico Dépôt : 3 articles</td><td class="price">17,67 €</td></tr>
+    <tr class="total"><td>Commande complète pour les deux portes, lots compris</td><td class="price">≈ 105 €</td></tr>
+    <tr class="total"><td>Par porte : pièces posées et passerelle comprises</td><td class="price">≈ 40 €</td></tr>
   </tbody>
 </table>
-<p class="small">Une bonne partie des lots (vis, roulements, servos, WAGO) restera pour d'autres projets.</p>
+<p class="small">Il restera des lots entamés (inserts, MOSFET, WAGO, fils, vis), utiles pour d'autres projets.</p>
 
 <h2>Autonomie attendue</h2>
 <table>
