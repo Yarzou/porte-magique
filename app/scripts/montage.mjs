@@ -71,6 +71,11 @@ if (fs.existsSync(IMG)) {
   for (const file of fs.readdirSync(IMG).filter(f => f.endsWith('.png'))) fs.copyFileSync(path.join(IMG, file), path.join(OUT, 'img', file))
 }
 
+// Moteur de pdf.js (lecteur de PDF de l'onglet Montage), servi par l'appli
+const PDF_WORKER = path.join(APP, 'node_modules', 'pdfjs-dist', 'legacy', 'build', 'pdf.worker.min.mjs')
+if (fs.existsSync(PDF_WORKER)) fs.copyFileSync(PDF_WORKER, path.join(OUT, 'pdf.worker.min.mjs'))
+else console.warn('[montage] pdfjs-dist absent : le lecteur de PDF ne marchera pas (npm install).')
+
 const prints = []
 if (fs.existsSync(PRINTS)) {
   for (const file of fs.readdirSync(PRINTS).filter(f => f.endsWith('.stl')).sort()) {

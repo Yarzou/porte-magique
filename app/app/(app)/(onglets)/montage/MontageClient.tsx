@@ -3,16 +3,16 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { BookOpen, Box, Check, ExternalLink, FileText, Share, ShoppingCart } from 'lucide-react'
+import { BookOpen, Box, Check, ChevronRight, ExternalLink, FileText, ShoppingCart } from 'lucide-react'
 import { usePassage } from '@/components/passage/PassageProvider'
-import { usePassageData } from '@/components/passage/PassageData'
+import PdfViewer from '@/components/montage/PdfViewer'
 import PieceViewer from '@/components/montage/PieceViewer'
 import { usePurchases } from '@/components/montage/usePurchases'
 import PageHeader from '@/components/ui/PageHeader'
 import Segmented from '@/components/ui/Segmented'
 import { IconTile, ListRow, ListSection } from '@/components/ui/List'
 import { MONTAGE, PDF, printParts, type PrintPart } from '@/lib/montage'
-import { preloadFile, shareFile } from '@/lib/share-file'
+import { preloadFile } from '@/lib/share-file'
 import { cn } from '@/lib/utils'
 
 type View = 'achats' | 'impression' | 'notice'
@@ -48,38 +48,33 @@ export default function MontageClient() {
 }
 
 /**
- * Un PDF du dépôt. Sur le téléphone, il passe par la feuille de partage
- * (Enregistrer dans Fichiers, Imprimer, AirDrop) : ouvert dans l'appli
- * installée, il n'avait pas de bouton pour en sortir. Sur un ordinateur, il
- * s'ouvre dans un nouvel onglet. Téléchargé à l'avance, pour que le partage
- * parte dès le toucher (Safari l'exige).
+ * Un PDF du dépôt, lu dans l'appli (PdfViewer), avec le bouton Partager de la
+ * feuille de partage. Un lien vers le fichier l'ouvrait dans l'appli installée
+ * sur iPhone, sans bouton pour en sortir. Téléchargé à l'avance : la lecture
+ * démarre tout de suite, et Safari n'accepte le partage que dès le toucher.
  */
 function PdfRow({ href, name, title, subtitle, icon }: { href: string; name: string; title: string; subtitle: string; icon: React.ReactNode }) {
-  const { showToast } = usePassageData()
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
     const timer = setTimeout(() => void preloadFile(href).catch(() => {}), 1500)
     return () => clearTimeout(timer)
   }, [href])
 
-  const open = async () => {
-    const result = await shareFile(href, name, 'application/pdf', title)
-    if (result === 'reessayer') showToast({ text: 'Le PDF est prêt : touchez encore une fois.' })
-    if (result === 'impossible') showToast({ text: 'Ce téléphone ne sait pas enregistrer ce PDF.', tone: 'error' })
-    if (result === 'echec') showToast({ text: 'Partage impossible. Vérifiez votre connexion.', tone: 'error' })
-  }
-
   return (
-    <button type="button" onClick={open} className="flex w-full items-stretch gap-3 pl-4 text-left active:bg-fill-soft">
-      <span className="flex shrink-0 items-center">{icon}</span>
-      <span className="flex min-h-[52px] min-w-0 flex-1 items-center gap-3 border-t border-separator py-2 pr-4 [*:first-child>&]:border-t-0">
-        <span className="flex min-w-0 flex-1 flex-col">
-          <span className="text-body">{title}</span>
-          <span className="text-footnote text-ink-muted">{subtitle}</span>
+    <>
+      <button type="button" onClick={() => setOpen(true)} className="flex w-full items-stretch gap-3 pl-4 text-left active:bg-fill-soft">
+        <span className="flex shrink-0 items-center">{icon}</span>
+        <span className="flex min-h-[52px] min-w-0 flex-1 items-center gap-3 border-t border-separator py-2 pr-4 [*:first-child>&]:border-t-0">
+          <span className="flex min-w-0 flex-1 flex-col">
+            <span className="text-body">{title}</span>
+            <span className="text-footnote text-ink-muted">{subtitle}</span>
+          </span>
+          <ChevronRight size={18} strokeWidth={2.4} className="shrink-0 text-ink-faint" aria-hidden="true" />
         </span>
-        <Share size={17} strokeWidth={2.2} className="shrink-0 text-accent" aria-hidden="true" />
-      </span>
-    </button>
+      </button>
+      {open && <PdfViewer url={href} name={name} title={title} onClose={() => setOpen(false)} />}
+    </>
   )
 }
 
@@ -95,7 +90,7 @@ function Purchases() {
   if (all.length === 0) {
     return (
       <ListSection>
-        <PdfRow href={PDF.materiel} name="liste-achat-porte-magique.pdf" title="Liste d’achat" subtitle="PDF : enregistrer, imprimer ou envoyer" icon={<IconTile className="bg-tile-green"><ShoppingCart size={18} aria-hidden="true" /></IconTile>} />
+        <PdfRow href={PDF.materiel} name="liste-achat-porte-magique.pdf" title="Liste d’achat" subtitle="PDF : lire, imprimer ou partager" icon={<IconTile className="bg-tile-green"><ShoppingCart size={18} aria-hidden="true" /></IconTile>} />
       </ListSection>
     )
   }
@@ -179,7 +174,7 @@ function Purchases() {
 
       <ListSection footer="Les coches restent sur ce téléphone.">
         {MONTAGE.pdf.materiel && (
-          <PdfRow href={PDF.materiel} name="liste-achat-porte-magique.pdf" title="Liste d’achat en PDF" subtitle="Enregistrer, imprimer ou envoyer" icon={<IconTile className="bg-tile-green"><FileText size={18} aria-hidden="true" /></IconTile>} />
+          <PdfRow href={PDF.materiel} name="liste-achat-porte-magique.pdf" title="Liste d’achat en PDF" subtitle="Lire, imprimer ou partager" icon={<IconTile className="bg-tile-green"><FileText size={18} aria-hidden="true" /></IconTile>} />
         )}
         {done > 0 && (
           <ListRow
@@ -280,7 +275,7 @@ function Notice() {
           />
         )}
         {MONTAGE.pdf.notice && (
-          <PdfRow href={PDF.notice} name="notice-porte-magique.pdf" title="Notice complète en PDF" subtitle="Enregistrer, imprimer ou envoyer" icon={<IconTile className="bg-tile-blue"><FileText size={18} aria-hidden="true" /></IconTile>} />
+          <PdfRow href={PDF.notice} name="notice-porte-magique.pdf" title="Notice complète en PDF" subtitle="Lire, imprimer ou partager" icon={<IconTile className="bg-tile-blue"><FileText size={18} aria-hidden="true" /></IconTile>} />
         )}
       </ListSection>
 
